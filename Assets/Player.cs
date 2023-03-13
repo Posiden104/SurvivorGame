@@ -7,8 +7,8 @@ public class Player : Entity
     // Start is called before the first frame update
     void Start()
     {
-        maxHp = 100;
-        hp = maxHp;
+        MaxHP = 100;
+        HP = MaxHP;
     }
 
     // Update is called once per frame
