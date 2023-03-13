@@ -4,29 +4,28 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    protected float hp;
-    protected float maxHp;
+    public float HP { get; protected set; }
+    public float MaxHP { get; protected set; }
 
     public virtual float Damage(float dmg)
     {
-        hp -= dmg;
-        if(hp <= 0)
+        HP -= dmg;
+        if(HP <= 0)
         {
-            hp = 0;
-            Kill();
+            HP = 0;
+            //Kill();
         }
-        Debug.Log($"Damage! {dmg}");
-        return hp;
+        return HP;
     }
 
     public virtual float Heal(float amt)
     {
-        return hp += amt;
+        return HP += amt;
     }
 
     public virtual void SetMaxHp(float max)
     {
-        maxHp = max;
+        MaxHP = max;
     }
 
     public virtual void Kill()
