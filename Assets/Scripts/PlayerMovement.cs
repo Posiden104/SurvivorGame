@@ -9,15 +9,13 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rigidBody;
     private float moveH;
     private float moveV;
+    private Player player;
+    private Vector3 dir;
 
-    void Start()
-    {
-    }
-
-
-    private void Awake()
+    private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        player = GameManager.Instance.player;
     }
 
     // Update is called once per frame
@@ -25,13 +23,35 @@ public class PlayerMovement : MonoBehaviour
     {
         moveH = Input.GetAxisRaw("Horizontal");
         moveV = Input.GetAxisRaw("Vertical");
-
     }
 
     void FixedUpdate()
     {
-        Vector3 tv = new(moveH, moveV, 0);
-        tv = speed * tv.normalized;
-        rigidBody.MovePosition(rigidBody.transform.position + tv);
+        dir = new(moveH, moveV, 0);
+        dir = speed * dir.normalized;
+        rigidBody.MovePosition(rigidBody.transform.position + dir);
+    }
+
+    void SetPlayerDirs()
+    {
+        if (dir != Vector3.zero) player.dirTrue = dir;
+
+        if (moveV < 0)
+        {
+            player.dirOrth = Vector3.up;
+        }
+        else if (moveV > 0)
+        {
+            player.dirOrth = Vector3.down;
+        }
+
+        if (moveH > 0)
+        {
+            player.dirOrth = Vector3.right;
+        }
+        else if (moveH < 0)
+        {
+            player.dirOrth = Vector3.left;
+        }
     }
 }

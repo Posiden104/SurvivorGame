@@ -7,23 +7,24 @@ using UnityEngine;
 public class Enemy : Entity
 {
     [SerializeField]
-    private float damage;
+    protected float damage;
     [SerializeField] 
-    private float damageFrequencyInSec;
+    protected float damageCooldown;
     [SerializeField] 
-    private float onColExitDamageDelayInSec;
+    protected float dmgResetCooldown;
 
-    private Rigidbody2D rb;
-    private EnemyMovement em;
-    private bool canDamage = true;
-    private bool collidingWithPlayer = false;
-    private int timer = 0;
-    private int fixedUpdatesPerSec = 50;
-    private Player player;
+    protected Rigidbody2D rb;
+    protected EnemyMovement em;
+    protected bool canDamage = true;
+    protected bool collidingWithPlayer = false;
+    protected int timer = 0;
+    protected int fixedUpdatesPerSec = 50;
+    protected Player player;
 
     // Start is called before the first frame update
     void Start()
     {
+        MaxHP = HP = 1;
     }
 
     private void Awake()
@@ -36,6 +37,7 @@ public class Enemy : Entity
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(collidingWithPlayer && canDamage);
         if(collidingWithPlayer && canDamage)
         {
             canDamage = false;
@@ -49,7 +51,7 @@ public class Enemy : Entity
         if (!canDamage)
         {
             timer++;
-            if(timer >= damageFrequencyInSec * fixedUpdatesPerSec)
+            if(timer >= damageCooldown * fixedUpdatesPerSec)
             {
                 canDamage = true;
                 timer = 0;
@@ -68,7 +70,7 @@ public class Enemy : Entity
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        timer = fixedUpdatesPerSec - (int)(onColExitDamageDelayInSec * fixedUpdatesPerSec);
+        timer = fixedUpdatesPerSec - (int)(dmgResetCooldown * fixedUpdatesPerSec);
         collidingWithPlayer = false;
     }
 }

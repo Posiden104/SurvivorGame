@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public Player player { get; private set; }
+    public GameObject bulletPrefab;
 
     void Awake()
     {

@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    public float HP { get; protected set; }
-    public float MaxHP { get; protected set; }
+    [SerializeField]
+    public float HP;
+    [SerializeField]
+    public float MaxHP;
+
+    private void Awake()
+    {
+        HP = MaxHP;
+    }
 
     public virtual void Damage(float dmg)
     {
