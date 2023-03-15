@@ -1,14 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletMovement : MonoBehaviour
 {
-    public float speed;
-    public float damage;
     public Vector3 normalizedDir;
 
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private float damage;
+    [SerializeField]
+    private int hitsToDie = 1;
+
     private Rigidbody2D rb2d;
+
+    public void Hit(Enemy enemy)
+    {
+        enemy.Damage(damage);
+        hitsToDie--;
+        if(hitsToDie == 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Awake()
     {
@@ -20,11 +36,16 @@ public class BulletMovement : MonoBehaviour
         rb2d.MovePosition(rb2d.transform.position + (normalizedDir * speed));
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    void OnBecameInvisible()
     {
-        if (other.collider.TryGetComponent<Enemy>(out var enemy))
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.TryGetComponent<Enemy>(out var enemy))
         {
-            enemy.Damage(damage);
+            Hit(enemy);
         }
     }
 }

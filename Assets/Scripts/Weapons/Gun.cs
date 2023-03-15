@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Gun : Weapon
@@ -7,14 +8,14 @@ public class Gun : Weapon
     private Player player;
 
     // Start is called before the first frame update
-    void Start()
+    public Gun(Player _player) : base()
     {
-        player = GameManager.Instance.player;
+        player = _player;
     }
 
     protected override void Activate()
     {
-        var b = Instantiate(GameManager.Instance.bulletPrefab, projectileSpawn);
+        var b = GameObject.Instantiate(GameManager.Instance.bulletPrefab, projectileSpawn);
         var bm = b.GetComponent<BulletMovement>();
         bm.normalizedDir = player.dirOrth;
     }

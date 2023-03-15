@@ -1,25 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class Weapon
 {
     public Transform projectileSpawn;
     public float damage = 1f;
-    public float activateFrequency = 1f;
+    public float activateFrequencyInSec = 1f;
+    public int Level = 1;
 
-    private float timer;
+    private float timer = 0;
+    private float fixedUpdatesPerActivation;
 
-    private void Awake()
+    public Weapon()
     {
-        timer = 0;
+        fixedUpdatesPerActivation = activateFrequencyInSec * GameManager.fixedUpdatesPerSec;
     }
 
-    private void FixedUpdate()
+    public virtual void FixedUpdate()
     {
         timer++;
-        if (timer >= activateFrequency)
+        if (timer >= fixedUpdatesPerActivation)
         {
             Activate();
             timer = 0;
@@ -27,6 +26,11 @@ public class Weapon : MonoBehaviour
     }
 
     protected virtual void Activate()
+    {
+
+    }
+
+    public virtual void LevelUp()
     {
 
     }
