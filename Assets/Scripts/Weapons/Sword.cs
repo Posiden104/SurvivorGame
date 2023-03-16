@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Weapons
 {
@@ -14,7 +10,10 @@ namespace Assets.Scripts.Weapons
 
         public override void Activate()
         {
-            base.Activate();
+            var s = Object.Instantiate(GameManager.swordPrefab, player.transform);
+            var rm = s.GetComponent<RotationalMovement>();
         }
+
+
     }
 }

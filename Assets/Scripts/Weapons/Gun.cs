@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public class Gun : Weapon
 
     public override void Activate()
     {
-        var b = GameObject.Instantiate(GameManager.Instance.bulletPrefab, projectileSpawn);
+        var b = Object.Instantiate(GameManager.bulletPrefab, projectileSpawn);
         var bm = b.GetComponent<BulletMovement>();
         bm.normalizedDir = player.dirOrth;
     }

@@ -1,5 +1,6 @@
 using Assets.Scripts.Weapons;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : IWeapon
@@ -12,16 +13,20 @@ public class Weapon : IWeapon
     protected float timer = 0;
     protected float fixedUpdatesPerActivation;
     protected Player player;
+    protected float lifetime;
+    protected float fixedUpdatesPerLife;
 
     public Weapon(Player p)
     {
         player = p;
         fixedUpdatesPerActivation = activateFrequencyInSec * GameManager.fixedUpdatesPerSec;
+        fixedUpdatesPerLife = lifetime * GameManager.fixedUpdatesPerSec;
     }
 
     public virtual void FixedUpdate()
     {
         timer++;
+        fixedUpdatesPerLife--;
         if (timer >= fixedUpdatesPerActivation)
         {
             Activate();
