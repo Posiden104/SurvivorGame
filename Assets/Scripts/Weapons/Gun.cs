@@ -5,15 +5,11 @@ using UnityEngine;
 
 public class Gun : Weapon
 {
-    private Player player;
-
-    // Start is called before the first frame update
-    public Gun(Player _player) : base()
+    public Gun(Player p) : base(p)
     {
-        player = _player;
     }
 
-    protected override void Activate()
+    public override void Activate()
     {
         var b = GameObject.Instantiate(GameManager.Instance.bulletPrefab, projectileSpawn);
         var bm = b.GetComponent<BulletMovement>();

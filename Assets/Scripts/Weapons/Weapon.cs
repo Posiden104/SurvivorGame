@@ -1,17 +1,21 @@
+using Assets.Scripts.Weapons;
+using System;
 using UnityEngine;
 
-public class Weapon
+public class Weapon : IWeapon
 {
     public Transform projectileSpawn;
     public float damage = 1f;
     public float activateFrequencyInSec = 1f;
     public int Level = 1;
 
-    private float timer = 0;
-    private float fixedUpdatesPerActivation;
+    protected float timer = 0;
+    protected float fixedUpdatesPerActivation;
+    protected Player player;
 
-    public Weapon()
+    public Weapon(Player p)
     {
+        player = p;
         fixedUpdatesPerActivation = activateFrequencyInSec * GameManager.fixedUpdatesPerSec;
     }
 
@@ -25,18 +29,18 @@ public class Weapon
         }
     }
 
-    public virtual void Update()
+    public virtual void Activate()
     {
-
-    }
-
-    protected virtual void Activate()
-    {
-
+        throw new NotImplementedException();
     }
 
     public virtual void LevelUp()
     {
+        throw new NotImplementedException();
+    }
 
+    public virtual void Update()
+    {
+        throw new NotImplementedException();
     }
 }

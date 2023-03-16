@@ -1,3 +1,4 @@
+using Assets.Scripts.Weapons;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ public class Player : Entity
     public Vector3 dirOrth { get; private set; }
     public Vector3 dirTrue { get; private set; }
 
-    private List<Weapon> weapons;
+    private List<IWeapon> weapons;
     private Transform projectileSpawn;
 
     // Start is called before the first frame update
