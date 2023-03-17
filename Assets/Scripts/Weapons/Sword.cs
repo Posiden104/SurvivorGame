@@ -2,18 +2,43 @@
 
 namespace Assets.Scripts.Weapons
 {
-    public class Sword : Weapon
+    public class Sword : Weapon, IHasLifetime
     {
         // knockback
 
-        public Sword(Player p) : base(p) { }
+        private GameObject sword;
+        private RotationalMovement rm;
+        private WeaponLifetime lifetime;
+
+        public Sword(Player p) : base(p) 
+        {
+            onCooldown = true;
+            sword = Object.Instantiate(GameManager.Instance.swordPrefab, player.transform);
+            rm = sword.GetComponent<RotationalMovement>();
+            rm.SetRotationPoint(player.transform);
+            lifetime = sword.GetComponent<WeaponLifetime>();
+            lifetime.SetWeapon(this);
+            weaponCooldown = 3f;
+        }
 
         public override void Activate()
         {
-            var s = Object.Instantiate(GameManager.swordPrefab, player.transform);
-            var rm = s.GetComponent<RotationalMovement>();
+            lifetime.Activate();
         }
 
+        public void OnLifetimeEnd()
+        {
+            onCooldown = true;
+        }
 
+        public void OnLifetimeStart()
+        {
+            onCooldown = false;
+        }
+
+        public override void Update()
+        {
+
+        }
     }
 }

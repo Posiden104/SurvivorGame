@@ -19,12 +19,11 @@ public class RotationalMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     private void FixedUpdate()
     {
-        transform.Rotate(0, 0, speed);
+        transform.RotateAround(centerPoint.position, Vector3.forward, -Time.deltaTime * speed);
     }
 
     public void Setup(Transform cpoint, float r, float s)
@@ -32,5 +31,11 @@ public class RotationalMovement : MonoBehaviour
         centerPoint = cpoint;
         radius = r;
         speed = s;
+    }
+
+    public void SetRotationPoint(Transform t)
+    {
+        Debug.Log("rotational point transform" + t);
+        centerPoint = t;
     }
 }

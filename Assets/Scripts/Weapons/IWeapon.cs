@@ -12,5 +12,6 @@ namespace Assets.Scripts.Weapons
         void Activate();
         void LevelUp();
         void FixedUpdate();
+        
     }
 }

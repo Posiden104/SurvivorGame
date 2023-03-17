@@ -21,7 +21,8 @@ public class Player : Entity
         dirOrth = Vector3.right;
         dirTrue = Vector3.right;
 
-        AddWeapon(new Gun(this));
+        //AddWeapon(new Gun(this));
+        AddWeapon(new Sword(this));
     }
 
     // Update is called once per frame

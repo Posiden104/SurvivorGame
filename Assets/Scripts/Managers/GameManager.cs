@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
     public Player player { get; private set; }
 
     // WEAPONS
-    public static GameObject bulletPrefab;
-    public static GameObject swordPrefab;
+    public GameObject bulletPrefab;
+    public GameObject swordPrefab;
 
 
     void Awake()
