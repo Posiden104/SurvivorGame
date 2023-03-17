@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RotationalMovement : MonoBehaviour
@@ -35,7 +33,6 @@ public class RotationalMovement : MonoBehaviour
 
     public void SetRotationPoint(Transform t)
     {
-        Debug.Log("rotational point transform" + t);
         centerPoint = t;
     }
 }

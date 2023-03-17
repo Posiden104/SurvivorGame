@@ -6,13 +6,14 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
 
-    public bool canMove;
+    public bool canMove = true;
 
     [SerializeField]
     private float speed;
     private Rigidbody2D rigidBody;
     private Vector3 targetPos;
     private Rigidbody2D player;
+    private Vector3 dir;
 
     // Start is called before the first frame update
     void Start()
@@ -35,9 +36,16 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //if (!canMove) return;
-        Vector3 dir = (targetPos - transform.position).normalized;
-        dir *= speed;
-        rigidBody.MovePosition(rigidBody.transform.position + dir);
+        if (canMove)
+        {
+            dir = (targetPos - transform.position).normalized;
+            dir *= speed;
+            rigidBody.MovePosition(rigidBody.transform.position + dir);
+        }
+    }
+
+    public void Knockback(Vector3 direction, float force)
+    {
+        
     }
 }
