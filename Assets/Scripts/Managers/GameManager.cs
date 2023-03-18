@@ -10,7 +10,10 @@ public class GameManager : MonoBehaviour
     public static int fixedUpdatesPerSec = 50;
 
     public Player player { get; private set; }
+
+    // WEAPONS
     public GameObject bulletPrefab;
+    public GameObject swordPrefab;
 
 
     void Awake()

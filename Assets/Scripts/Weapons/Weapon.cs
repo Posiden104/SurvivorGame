@@ -1,42 +1,46 @@
+using Assets.Scripts.Weapons;
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Weapon
+public class Weapon : IWeapon
 {
     public Transform projectileSpawn;
     public float damage = 1f;
-    public float activateFrequencyInSec = 1f;
-    public int Level = 1;
+    public float weaponCooldown = 1f;
+    public int weaponLevel = 1;
 
-    private float timer = 0;
-    private float fixedUpdatesPerActivation;
+    protected float weaponCooldownTimer = 0;
+    protected Player player;
+    protected bool onCooldown;
 
-    public Weapon()
+    public Weapon(Player p)
     {
-        fixedUpdatesPerActivation = activateFrequencyInSec * GameManager.fixedUpdatesPerSec;
+        player = p;
     }
 
     public virtual void FixedUpdate()
     {
-        timer++;
-        if (timer >= fixedUpdatesPerActivation)
+        if (!onCooldown) return;
+        weaponCooldownTimer++;
+        if (weaponCooldownTimer >= weaponCooldown * GameManager.fixedUpdatesPerSec)
         {
+            onCooldown = false;
+            weaponCooldownTimer = 0;
             Activate();
-            timer = 0;
         }
     }
 
-    public virtual void Update()
+    public virtual void Activate()
     {
-
-    }
-
-    protected virtual void Activate()
-    {
-
     }
 
     public virtual void LevelUp()
     {
+        throw new NotImplementedException();
+    }
 
+    public virtual void Update()
+    {
     }
 }

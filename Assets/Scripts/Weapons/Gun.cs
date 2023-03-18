@@ -1,22 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-
-public class Gun : Weapon
+namespace Assets.Scripts.Weapons
 {
-    private Player player;
-
-    // Start is called before the first frame update
-    public Gun(Player _player) : base()
+    public class Gun : Weapon
     {
-        player = _player;
-    }
+        public Gun(Player p) : base(p)
+        {
+            onCooldown = true;
+        }
 
-    protected override void Activate()
-    {
-        var b = GameObject.Instantiate(GameManager.Instance.bulletPrefab, projectileSpawn);
-        var bm = b.GetComponent<BulletMovement>();
-        bm.normalizedDir = player.dirOrth;
+        public override void Activate()
+        {
+            var b = Object.Instantiate(GameManager.Instance.bulletPrefab, projectileSpawn);
+            var bm = b.GetComponent<BulletMovement>();
+            bm.normalizedDir = player.dirOrth;
+            onCooldown = true;
+        }
     }
 }

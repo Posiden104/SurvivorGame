@@ -19,16 +19,12 @@ public class Enemy : Entity
     protected bool collidingWithPlayer = false;
     protected int timer = 0;
     protected Player player;
-    protected float fixedUpdatesDmgCooldown;
-    protected float fixedUpdatesDmgResetCooldown;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        MaxHP = HP;
-        fixedUpdatesDmgCooldown = GameManager.fixedUpdatesPerSec * damageCooldown;
-        fixedUpdatesDmgResetCooldown = GameManager.fixedUpdatesPerSec * dmgResetCooldown;
+        HP = MaxHP;
     }
 
     private void Awake()
@@ -53,7 +49,7 @@ public class Enemy : Entity
         if (!canDamage)
         {
             timer++;
-            if(timer >= fixedUpdatesDmgCooldown)
+            if(timer >= GameManager.fixedUpdatesPerSec * damageCooldown)
             {
                 canDamage = true;
                 timer = 0;
@@ -70,17 +66,9 @@ public class Enemy : Entity
         
     }
 
-    //private void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    if (other.gameObject.TryGetComponent<BulletMovement>(out var bullet))
-    //    {
-    //        bullet.Hit(this);
-    //    }
-    //}
-
     private void OnCollisionExit2D(Collision2D other)
     {
-        timer = (int) (fixedUpdatesDmgCooldown - fixedUpdatesDmgResetCooldown);
+        timer = (int) (GameManager.fixedUpdatesPerSec * damageCooldown - GameManager.fixedUpdatesPerSec * dmgResetCooldown);
         collidingWithPlayer = false;
     }
 }
