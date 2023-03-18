@@ -5,7 +5,7 @@ public class DamageObject : MonoBehaviour
     [SerializeField]
     private float damage;
     [SerializeField]
-    private bool canBreak;
+    private bool causesKnockback, canBreak;
 
     [SerializeField]
     [DrawIf("canBreak", true)]
@@ -27,6 +27,9 @@ public class DamageObject : MonoBehaviour
         if (other.gameObject.TryGetComponent<Enemy>(out var enemy))
         {
             Hit(enemy);
+            if(causesKnockback && enemy.TryGetComponent<Knockback>(out var kb)){
+                kb.PlayFeedback(gameObject);
+            }
         }
     }
 }

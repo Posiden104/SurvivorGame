@@ -43,9 +43,4 @@ public class EnemyMovement : MonoBehaviour
             rigidBody.MovePosition(rigidBody.transform.position + dir);
         }
     }
-
-    public void Knockback(Vector3 direction, float force)
-    {
-        
-    }
 }

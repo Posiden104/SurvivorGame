@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 0.7
-  speed: 100
+  speed: 200
 --- !u!114 &1475369009784061420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,5 +154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  causesKnockback: 1
   canBreak: 0
   hitsToDie: 0
