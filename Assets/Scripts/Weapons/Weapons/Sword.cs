@@ -19,6 +19,10 @@ namespace Assets.Scripts.Weapons
             lifetime = sword.GetComponent<WeaponLifetime>();
             lifetime.SetWeapon(this);
             weaponCooldown = 3f;
+            weaponName = "Sword";
+
+            var dobj = sword.GetComponent<DamageObject>();
+            dobj.RegisterOnHit(DidDamage);
         }
 
         public override void Activate()

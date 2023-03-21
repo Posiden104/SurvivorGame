@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DamageObject : MonoBehaviour
@@ -11,9 +13,12 @@ public class DamageObject : MonoBehaviour
     [DrawIf("canBreak", true)]
     private int hitsToDie;
 
+    private Action<float> onHitActions;
+
     public void Hit(Enemy enemy)
     {
         enemy.Damage(damage);
+        onHitActions(damage);
         if (!canBreak) return;
         hitsToDie--;
         if (hitsToDie == 0)
@@ -31,5 +36,10 @@ public class DamageObject : MonoBehaviour
                 kb.PlayFeedback(gameObject);
             }
         }
+    }
+
+    public void RegisterOnHit(Action<float> act)
+    {
+        onHitActions += act;
     }
 }

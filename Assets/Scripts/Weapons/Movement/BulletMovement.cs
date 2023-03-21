@@ -9,22 +9,7 @@ public class BulletMovement : MonoBehaviour
 
     [SerializeField]
     private float speed;
-    //[SerializeField]
-    //private float damage;
-    //[SerializeField]
-    //private int hitsToDie = 1;
-
     private Rigidbody2D rb2d;
-
-    //public void Hit(Enemy enemy)
-    //{
-    //    enemy.Damage(damage);
-    //    hitsToDie--;
-    //    if(hitsToDie == 0)
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
 
     void Awake()
     {

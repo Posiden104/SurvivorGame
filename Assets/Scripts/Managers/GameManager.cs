@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject swordPrefab;
 
+    // OTHER
+    public Timer timer;
 
     void Awake()
     {

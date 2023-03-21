@@ -381,7 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40972967a2ccc654895e4dd776b37f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
+  HP: 0
   MaxHP: 100
 --- !u!1 &1187222952
 GameObject:
@@ -460,6 +460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 2539490952633512001, guid: 99aed8828d991a545a07889b57c8abb3, type: 3}
   swordPrefab: {fileID: 698623916622274697, guid: 162d92d50c59e954dac747cfe209ba53, type: 3}
+  timer: {fileID: 1879620375}
 --- !u!1 &1267961313
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,7 +939,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 452059bb25f0e3042bdd74ce013fde42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seconds: 0
   tmp: {fileID: 1879620373}
 --- !u!1 &1968631986
 GameObject:
@@ -1101,11 +1101,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1854158472925468245, guid: 35c450be1bb4ed64b9bed6d0ef2b40c6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.99
+      value: 0.94
       objectReference: {fileID: 0}
     - target: {fileID: 1854158472925468245, guid: 35c450be1bb4ed64b9bed6d0ef2b40c6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.95
+      value: 1.06
       objectReference: {fileID: 0}
     - target: {fileID: 1854158472925468245, guid: 35c450be1bb4ed64b9bed6d0ef2b40c6, type: 3}
       propertyPath: m_LocalPosition.z

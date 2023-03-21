@@ -6,6 +6,7 @@ namespace Assets.Scripts.Weapons
         public Gun(Player p) : base(p)
         {
             onCooldown = true;
+            weaponName = "Gun";
         }
 
         public override void Activate()
@@ -13,6 +14,8 @@ namespace Assets.Scripts.Weapons
             var b = Object.Instantiate(GameManager.Instance.bulletPrefab, projectileSpawn);
             var bm = b.GetComponent<BulletMovement>();
             bm.normalizedDir = player.dirOrth;
+            var dobj = b.GetComponent<DamageObject>();
+            dobj.RegisterOnHit(DidDamage);
             onCooldown = true;
         }
     }
