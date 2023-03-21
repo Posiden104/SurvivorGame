@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    public float seconds;
+    private float seconds;
 
     [SerializeField]
     private TextMeshProUGUI tmp;
@@ -30,5 +30,10 @@ public class Timer : MonoBehaviour
         var sec = (int)seconds % 60;
 
         tmp.text = $"{min:00}:{sec:00}";
+    }
+
+    public float GetSeconds()
+    {
+        return seconds;
     }
 }

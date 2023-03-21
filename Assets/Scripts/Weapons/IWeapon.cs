@@ -12,5 +12,7 @@ namespace Assets.Scripts.Weapons
         void Activate();
         void LevelUp();
         void FixedUpdate();
+        void DidDamage(float dmg);
+        WeaponStats GetStats();
     }
 }

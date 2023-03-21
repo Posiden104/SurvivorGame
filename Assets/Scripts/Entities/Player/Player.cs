@@ -1,8 +1,6 @@
 using Assets.Scripts.Weapons;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : Entity
@@ -21,7 +19,7 @@ public class Player : Entity
         dirOrth = Vector3.right;
         dirTrue = Vector3.right;
 
-        //AddWeapon(new Gun(this));
+        AddWeapon(new Gun(this));
         AddWeapon(new Sword(this));
     }
 
@@ -40,6 +38,18 @@ public class Player : Entity
         {
             weapon.FixedUpdate();
         }
+    }
+
+    public override void Kill()
+    {
+        Debug.Log("=====================================");
+        Debug.Log("You died!");
+        foreach(var weapon in weapons)
+        {
+            var ws = weapon.GetStats();
+            Debug.Log($"{ws.Name} - Total Damage: {ws.DamageDealt} | DPS: {ws.DPS})");
+        }
+        Debug.Log("=====================================");
     }
 
     void AddWeapon(Weapon w)
