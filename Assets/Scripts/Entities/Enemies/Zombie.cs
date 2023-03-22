@@ -7,7 +7,7 @@ public class Zombie : Enemy
 
     public override void Kill()
     {
-        GameObject.Instantiate(this, GameManager.Instance.zombieSpawner.transform);
+        Instantiate(this, GameManager.Instance.zombieSpawner.transform);
         base.Kill();
     }
 }
