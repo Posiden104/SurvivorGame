@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    [SerializeField]
     public float HP;
-    [SerializeField]
     public float MaxHP;
+
+    [SerializeField]
+    private bool ShowDamageLog = false;
 
     private void Awake()
     {
@@ -17,7 +18,7 @@ public class Entity : MonoBehaviour
     public virtual void Damage(float dmg)
     {
         HP -= dmg;
-        Debug.Log($"{gameObject.name} - damage! health: {HP}/{MaxHP}");
+        if(ShowDamageLog) Debug.Log($"{gameObject.name} - damage! health: {HP}/{MaxHP}");
         if(HP <= 0)
         {
             HP = 0;

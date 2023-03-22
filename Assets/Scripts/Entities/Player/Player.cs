@@ -50,6 +50,7 @@ public class Player : Entity
             Debug.Log($"{ws.Name} - Total Damage: {ws.DamageDealt} | DPS: {ws.DPS})");
         }
         Debug.Log("=====================================");
+        GameManager.Instance.PlayerDied();
     }
 
     void AddWeapon(Weapon w)

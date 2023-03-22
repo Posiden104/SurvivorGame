@@ -163,7 +163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 0
-  MaxHP: 10
+  MaxHP: 5
+  ShowDamageLog: 0
   damage: 2
   damageCooldown: 1
   dmgResetCooldown: 0.1

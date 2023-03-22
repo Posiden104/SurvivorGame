@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,8 +17,14 @@ public class GameManager : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject swordPrefab;
 
-    // OTHER
+    // SPAWNERS
+    public GameObject zombieSpawner;
+
+    // UI
     public Timer timer;
+    public GameObject gameOverUI;
+
+    // PRIVATE
 
     void Awake()
     {
@@ -28,4 +36,15 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
+    }
+
+    public void PlayerDied()
+    {
+        gameOverUI.SetActive(true);
+        Time.timeScale = 0;
+    }
 }
