@@ -42,15 +42,18 @@ public class Player : Entity
 
     public override void Kill()
     {
-        Debug.Log("=====================================");
-        Debug.Log("You died!");
+        GameManager.Instance.PlayerDied();
+    }
+
+    public List<WeaponStats> GetWeaponStats()
+    {
+        List<WeaponStats> weaponStats = new();
         foreach(var weapon in weapons)
         {
-            var ws = weapon.GetStats();
-            Debug.Log($"{ws.Name} - Total Damage: {ws.DamageDealt} | DPS: {ws.DPS})");
+            weaponStats.Add(weapon.GetStats());
+            //Debug.Log($"{ws.Name} - Total Damage: {ws.DamageDealt} | DPS: {ws.DPS})");
         }
-        Debug.Log("=====================================");
-        GameManager.Instance.PlayerDied();
+        return weaponStats;
     }
 
     void AddWeapon(Weapon w)
