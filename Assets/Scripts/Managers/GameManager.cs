@@ -9,15 +9,19 @@ public class GameManager : MonoBehaviour
     public Player player { get; private set; }
 
     // WEAPONS
-    public GameObject bulletPrefab;
-    public GameObject swordPrefab;
-
-    // SPAWNERS
-    public GameObject zombieSpawner;
+    public GameObject BulletPrefab;
+    public GameObject SwordPrefab;
 
     // ENEMIES
-    public GameObject zombiePrefab;
-    public GameObject zombieSlowPrefab;
+    public GameObject ZombiePrefab;
+    public GameObject ZombieSlowPrefab;
+
+    // LOOT
+    public GameObject LootContainer;
+    public GameObject ScrapPrefab;
+
+    // SPAWNERS
+    public GameObject ZombieSpawner;
 
     // UI
     public Timer timer;

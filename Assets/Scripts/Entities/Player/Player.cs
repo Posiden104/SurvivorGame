@@ -1,4 +1,5 @@
 using Assets.Scripts.Weapons;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,6 +11,9 @@ public class Player : Entity
 
     private List<IWeapon> weapons;
     private Transform projectileSpawn;
+    private int scrap;
+    private int level = 1;
+    private int scrapToNextLevel = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -83,5 +87,34 @@ public class Player : Entity
         {
             dirOrth = Vector3.left;
         }
+    }
+
+    public void PickupScrap(int scrapValue)
+    {
+        scrap += scrapValue;
+        Debug.Log($"Scrap: {scrap}/{scrapToNextLevel}");
+        if(scrap >= scrapToNextLevel)
+        {
+            scrap -= scrapToNextLevel;
+            LevelUp();
+        }
+        Debug.Log(GetExpPercentage());
+    }
+
+    public void LevelUp()
+    {
+        Debug.Log("LEVEL UP!");
+        level++;
+        scrapToNextLevel = (int)(scrapToNextLevel * 1.2f);
+    }
+
+    public float GetExpPercentage()
+    {
+        return (float) (scrap) / scrapToNextLevel;
+    }
+
+    public float GetHpPercentage()
+    {
+        return HP / MaxHP;
     }
 }

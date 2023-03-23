@@ -169,6 +169,8 @@ MonoBehaviour:
   damageCooldown: 1
   dmgResetCooldown: 0.1
   myPrefab: {fileID: 1286011374463470835}
+  lootDropProbability: 90
+  lootValue: 1
 --- !u!114 &2847780155608994061
 MonoBehaviour:
   m_ObjectHideFlags: 0

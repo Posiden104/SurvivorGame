@@ -11,7 +11,7 @@ namespace Assets.Scripts.Weapons
 
         public override void Activate()
         {
-            var b = Object.Instantiate(GameManager.Instance.bulletPrefab, projectileSpawn);
+            var b = Object.Instantiate(GameManager.Instance.BulletPrefab, projectileSpawn);
             var bm = b.GetComponent<BulletMovement>();
             bm.normalizedDir = player.dirOrth;
             var dobj = b.GetComponent<DamageObject>();
