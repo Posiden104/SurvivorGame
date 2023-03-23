@@ -4,10 +4,4 @@ using UnityEngine;
 
 public class Zombie : Enemy
 {
-
-    public override void Kill()
-    {
-        Instantiate(this, GameManager.Instance.zombieSpawner.transform);
-        base.Kill();
-    }
 }

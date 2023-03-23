@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
     // SPAWNERS
     public GameObject zombieSpawner;
 
+    // ENEMIES
+    public GameObject zombiePrefab;
+    public GameObject zombieSlowPrefab;
+
     // UI
     public Timer timer;
     public GameObject gameEndUI;
@@ -58,5 +62,10 @@ public class GameManager : MonoBehaviour
     {
         gameEndUI.SetActive(false);
         gameOverUI.SetActive(true);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

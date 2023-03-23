@@ -42,6 +42,11 @@ public class WeaponLifetime : MonoBehaviour
         lifetimeManager = w;
     }
 
+    public void SetLifetime(float time)
+    {
+        lifetime = time;
+    }
+
     void ResetTimer()
     {
         lifetimeTimer = lifetime * GameManager.fixedUpdatesPerSec;

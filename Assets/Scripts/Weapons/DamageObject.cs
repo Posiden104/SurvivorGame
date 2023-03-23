@@ -1,6 +1,6 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class DamageObject : MonoBehaviour
 {
@@ -10,13 +10,14 @@ public class DamageObject : MonoBehaviour
     private bool causesKnockback, canBreak;
 
     [SerializeField]
-    [DrawIf("canBreak", true)]
+    //[DrawIf("canBreak", true)]
     private int hitsToDie;
 
     private Action<float> onHitActions;
 
     public void Hit(Enemy enemy)
     {
+        Debug.Log($"Hit {enemy.name}");
         enemy.Damage(damage);
         onHitActions(damage);
         if (!canBreak) return;
@@ -42,4 +43,5 @@ public class DamageObject : MonoBehaviour
     {
         onHitActions += act;
     }
+
 }
