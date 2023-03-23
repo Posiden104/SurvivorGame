@@ -22,14 +22,7 @@ public class Enemy : Entity
     protected int timer = 0;
     protected Player player;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        HP = MaxHP;
-    }
-
-    private void Awake()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         em = GetComponent<EnemyMovement>();
