@@ -12,6 +12,8 @@ public class Enemy : Entity
     protected float damageCooldown;
     [SerializeField] 
     protected float dmgResetCooldown;
+    [SerializeField]
+    protected GameObject myPrefab;
 
     protected Rigidbody2D rb;
     protected EnemyMovement em;

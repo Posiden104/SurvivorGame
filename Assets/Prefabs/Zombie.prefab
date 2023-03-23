@@ -164,9 +164,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 0
   MaxHP: 1
+  ShowDamageLog: 0
   damage: 2
   damageCooldown: 1
   dmgResetCooldown: 0.1
+  myPrefab: {fileID: 1286011374463470835}
 --- !u!114 &2847780155608994061
 MonoBehaviour:
   m_ObjectHideFlags: 0

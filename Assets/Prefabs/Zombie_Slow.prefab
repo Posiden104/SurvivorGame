@@ -168,6 +168,7 @@ MonoBehaviour:
   damage: 2
   damageCooldown: 1
   dmgResetCooldown: 0.1
+  myPrefab: {fileID: 1854158472925468249}
 --- !u!114 &-7882142153323005476
 MonoBehaviour:
   m_ObjectHideFlags: 0
