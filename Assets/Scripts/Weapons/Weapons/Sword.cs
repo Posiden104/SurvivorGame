@@ -13,7 +13,7 @@ namespace Assets.Scripts.Weapons
         public Sword(Player p) : base(p) 
         {
             onCooldown = true;
-            sword = Object.Instantiate(GameManager.Instance.swordPrefab, player.transform);
+            sword = Object.Instantiate(GameManager.Instance.SwordPrefab, player.transform);
             rm = sword.GetComponent<RotationalMovement>();
             rm.SetRotationPoint(player.transform);
             lifetime = sword.GetComponent<WeaponLifetime>();
