@@ -14,6 +14,8 @@ public class Player : Entity
     private int scrap;
     private int level = 1;
     private int scrapToNextLevel = 10;
+    private float hpScale = 1.2f;
+    private float xpScale = 1.2f;
 
     // Start is called before the first frame update
     void Start()
@@ -103,9 +105,10 @@ public class Player : Entity
 
     public void LevelUp()
     {
-        Debug.Log("LEVEL UP!");
         level++;
-        scrapToNextLevel = (int)(scrapToNextLevel * 1.2f);
+        scrapToNextLevel = (int)(scrapToNextLevel * xpScale);
+        MaxHP = (int) (MaxHP * hpScale);
+        HP = (int) (HP * hpScale);
     }
 
     public float GetExpPercentage()

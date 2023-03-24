@@ -20,9 +20,9 @@ public class LootScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<Player>(out var player))
+        if (other.CompareTag("PlayerPickupSensor"))
         {
-            player.PickupScrap(Mathf.Max(Value, 1));
+            GameManager.Instance.player.PickupScrap(Mathf.Max(Value, 1));
             Destroy(gameObject);
         }
     }
