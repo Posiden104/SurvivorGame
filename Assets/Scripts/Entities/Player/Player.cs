@@ -109,6 +109,15 @@ public class Player : Entity
         scrapToNextLevel = (int)(scrapToNextLevel * xpScale);
         MaxHP = (int) (MaxHP * hpScale);
         HP = (int) (HP * hpScale);
+
+        Time.timeScale = 0;
+        GameManager.Instance.levelUpScreen.SetActive(true);
+    }
+
+    public void LevelUpDone()
+    {
+        GameManager.Instance.levelUpScreen.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public float GetExpPercentage()

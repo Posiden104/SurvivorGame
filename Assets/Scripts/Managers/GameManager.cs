@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public GameEndScreen gameEndScreenScript;
     public GameObject gameOverUI;
     public GameObject gameStartUI;
+    public GameObject levelUpScreen;
 
     // PRIVATE
 
