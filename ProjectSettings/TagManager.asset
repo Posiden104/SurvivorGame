@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet
   - Melee Weapon
+  - PlayerPickupSensor
   layers:
   - Default
   - TransparentFX
