@@ -3,14 +3,16 @@ namespace Assets.Scripts.Weapons
 {
     public class Gun : Weapon
     {
-        public Gun(Player p) : base(p)
+        public Gun(Player p, Transform projSpawn) : base(p, projSpawn)
         {
-            onCooldown = true;
             weaponName = "Gun";
         }
 
         public override void Activate()
         {
+            Debug.Log("pew pew");
+            if (weaponLevel == 0) return;
+
             var b = Object.Instantiate(GameManager.Instance.BulletPrefab, projectileSpawn);
             var bm = b.GetComponent<BulletMovement>();
             bm.normalizedDir = player.dirOrth;
