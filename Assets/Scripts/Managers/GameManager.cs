@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject gameStartUI;
     public GameObject levelUpScreen;
+    public LevelUpScreen levelUpScreenScript;
 
     // PRIVATE
 
@@ -61,7 +62,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDied()
     {
-        gameEndScreenScript.DisplayStats(player.GetWeaponStats());
+        gameEndScreenScript.DisplayStats(player.weaponManager.GetWeaponStats());
         gameEndUI.SetActive(true);
         Time.timeScale = 0;
     }

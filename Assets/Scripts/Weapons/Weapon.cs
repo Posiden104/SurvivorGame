@@ -15,7 +15,7 @@ public class Weapon : IWeapon
     public Transform projectileSpawn;
     public float damage = 1f;
     public float weaponCooldown = 1f;
-    public int weaponLevel = 1;
+    public int weaponLevel = 0;
     public string weaponName;
 
     protected float weaponCooldownTimer = 0;
@@ -24,10 +24,16 @@ public class Weapon : IWeapon
     protected float startSeconds;
     protected float lifetimeDamage;
 
+    public Weapon(Player p, Transform projSpawn)
+    {
+        player = p;
+        onCooldown = true;
+        projectileSpawn = projSpawn;
+    }
     public Weapon(Player p)
     {
         player = p;
-        startSeconds = GameManager.Instance.timer.GetSeconds();
+        onCooldown = true;
     }
 
     public virtual void FixedUpdate()
@@ -66,10 +72,20 @@ public class Weapon : IWeapon
 
     public virtual void LevelUp()
     {
-        throw new NotImplementedException();
+        Debug.Log($"level up {weaponName} to level {weaponLevel + 1}");
+        if (weaponLevel == 0)
+        {
+            startSeconds = GameManager.Instance.timer.GetSeconds();
+            Setup();
+        }
+        weaponLevel++;
     }
 
     public virtual void Update()
+    {
+    }
+
+    public virtual void Setup()
     {
     }
 }

@@ -10,16 +10,18 @@ namespace Assets.Scripts.Weapons
         private RotationalMovement rm;
         private WeaponLifetime lifetime;
 
-        public Sword(Player p) : base(p) 
+        public Sword(Player p) : base(p)
         {
-            onCooldown = true;
+            weaponName = "Sword";
+            weaponCooldown = 3f;
+        }
+
+        public override void Setup() {
             sword = Object.Instantiate(GameManager.Instance.SwordPrefab, player.transform);
             rm = sword.GetComponent<RotationalMovement>();
             rm.SetRotationPoint(player.transform);
             lifetime = sword.GetComponent<WeaponLifetime>();
             lifetime.SetWeapon(this);
-            weaponCooldown = 3f;
-            weaponName = "Sword";
 
             var dobj = sword.GetComponent<DamageObject>();
             dobj.RegisterOnHit(DidDamage);
@@ -27,6 +29,7 @@ namespace Assets.Scripts.Weapons
 
         public override void Activate()
         {
+            if (weaponLevel == 0) return;
             lifetime.Activate();
         }
 
