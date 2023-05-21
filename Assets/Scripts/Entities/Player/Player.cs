@@ -25,7 +25,7 @@ public class Player : Entity
 
         //AddWeapon(new Gun(this));
         //AddWeapon(new Sword(this));
-        AddWeapon(new Overwatch(this));
+        //AddWeapon(new Overwatch(this));
         weaponManager = GetComponent<WeaponManager>();
     }
 
