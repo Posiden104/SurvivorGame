@@ -267,6 +267,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75154054}
   m_CullTransparentMesh: 1
+--- !u!1 &115884494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 115884496}
+  - component: {fileID: 115884495}
+  m_Layer: 0
+  m_Name: DistanceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &115884495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115884494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e119ac179ae44c46a775f0ba9e175fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &115884496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115884494}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &147849802 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 352882604964931706, guid: 25e746efae0a1a544aba5e73fcd77d49, type: 3}
@@ -2367,6 +2411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 2539490952633512001, guid: 99aed8828d991a545a07889b57c8abb3, type: 3}
   SwordPrefab: {fileID: 698623916622274697, guid: 162d92d50c59e954dac747cfe209ba53, type: 3}
+  CrosshairPrefab: {fileID: 1318004067971920886, guid: 285f574dc67f1aa498d470fc97d53604, type: 3}
   ZombiePrefab: {fileID: 1286011374463470835, guid: ff9c8159862bec643a0ad1d32064ab79, type: 3}
   ZombieSlowPrefab: {fileID: 1854158472925468249, guid: 35c450be1bb4ed64b9bed6d0ef2b40c6, type: 3}
   LootContainer: {fileID: 779197888}

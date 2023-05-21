@@ -5,7 +5,7 @@ namespace Assets.Scripts.Weapons
     {
         public Gun(Player p) : base(p)
         {
-            onCooldown = true;
+            onCooldown = false;
             weaponName = "Gun";
         }
 

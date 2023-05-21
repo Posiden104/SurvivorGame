@@ -25,8 +25,9 @@ public class Player : Entity
         dirOrth = Vector3.right;
         dirTrue = Vector3.right;
 
-        AddWeapon(new Gun(this));
-        AddWeapon(new Sword(this));
+        //AddWeapon(new Gun(this));
+        //AddWeapon(new Sword(this));
+        AddWeapon(new Overwatch(this));
     }
 
     // Update is called once per frame
@@ -57,7 +58,6 @@ public class Player : Entity
         foreach(var weapon in weapons)
         {
             weaponStats.Add(weapon.GetStats());
-            //Debug.Log($"{ws.Name} - Total Damage: {ws.DamageDealt} | DPS: {ws.DPS})");
         }
         return weaponStats;
     }
@@ -94,13 +94,11 @@ public class Player : Entity
     public void PickupScrap(int scrapValue)
     {
         scrap += scrapValue;
-        Debug.Log($"Scrap: {scrap}/{scrapToNextLevel}");
         if(scrap >= scrapToNextLevel)
         {
             scrap -= scrapToNextLevel;
             LevelUp();
         }
-        Debug.Log(GetExpPercentage());
     }
 
     public void LevelUp()
