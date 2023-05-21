@@ -23,9 +23,6 @@ public class Player : Entity
         dirOrth = Vector3.right;
         dirTrue = Vector3.right;
 
-        //AddWeapon(new Gun(this));
-        //AddWeapon(new Sword(this));
-        //AddWeapon(new Overwatch(this));
         weaponManager = GetComponent<WeaponManager>();
     }
 

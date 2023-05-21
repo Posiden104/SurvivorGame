@@ -39,7 +39,8 @@ public class LevelUpScreen : MonoBehaviour
         opt2Btn.GetComponentInChildren<TextMeshProUGUI>().text = "Sword";
 
         opt3Btn.onClick.RemoveAllListeners();
-        opt3Btn.gameObject.SetActive(false);
+        opt3Btn.onClick.AddListener(delegate { GameManager.Instance.player.weaponManager.WeaponUpgrade(2); });
+        opt3Btn.GetComponentInChildren<TextMeshProUGUI>().text = "Overwatch";
 
         opt1Btn.onClick.AddListener(OptionPicked);
         opt2Btn.onClick.AddListener(OptionPicked);

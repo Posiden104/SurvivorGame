@@ -21,6 +21,7 @@ public class WeaponManager : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("weapon manager start!");
         weapons = new Weapon[weaponCount];
         projectileSpawn = transform.GetComponentsInChildren<Transform>().First(c => c.name == "ProjectileSpawn");
         var p = gameObject.GetComponent<Player>();
@@ -39,7 +40,8 @@ public class WeaponManager : MonoBehaviour
     {
         foreach (var weapon in weapons)
         {
-            weapon.Update();
+            if(weapon != null)
+                weapon.Update();
         }
     }
 
@@ -47,7 +49,8 @@ public class WeaponManager : MonoBehaviour
     {
         foreach (var weapon in weapons)
         {
-            weapon.FixedUpdate();
+            if(weapon != null)
+                weapon.FixedUpdate();
         }
     }
 

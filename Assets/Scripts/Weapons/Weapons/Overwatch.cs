@@ -12,7 +12,7 @@ namespace Assets.Scripts.Weapons
 
         private bool lifetimeIsPaused;
         private float pauseTimer;
-        private float PauseDuration;
+        private float PauseDuration = 5f;
 
         public Overwatch(Player p) : base(p) 
         {
@@ -27,6 +27,7 @@ namespace Assets.Scripts.Weapons
             lifetime.SetWeapon(this);
 
             cm = crosshair.GetComponent<CrosshairMovement>();
+            cm.RegisterOnTargetDeath(NoTarget);
             OnLifetimeStart();
         }
 
@@ -46,8 +47,7 @@ namespace Assets.Scripts.Weapons
         {
             if(!DistanceManager.Instance.TryGetClosestObjectToPlayer(out var closest) || !closest.TryGetComponent(out target))
             {
-                lifetime.DeactivateNoEndHook();
-                Pause();
+                NoTarget();
                 return;
             }
             cm.targetTransform = target.transform;
@@ -64,6 +64,12 @@ namespace Assets.Scripts.Weapons
                     lifetime.Activate();
                 }
             }
+        }
+
+        private void NoTarget()
+        {
+            lifetime.DeactivateNoEndHook();
+            Pause();
         }
 
         private void Pause()
