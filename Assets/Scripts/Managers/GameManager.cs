@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     // WEAPONS
     public GameObject BulletPrefab;
     public GameObject SwordPrefab;
+    public GameObject CrosshairPrefab;
 
     // ENEMIES
     public GameObject ZombiePrefab;
@@ -36,13 +37,15 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null)
+            Destroy(this);
         Instance = this;
         Time.timeScale = 0;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     public void Begin()
