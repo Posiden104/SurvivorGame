@@ -23,6 +23,7 @@ public class Weapon : IWeapon
     protected bool onCooldown;
     protected float startSeconds;
     protected float lifetimeDamage;
+    protected float dmgScale = 1.2f;
 
     public Weapon(Player p, Transform projSpawn)
     {

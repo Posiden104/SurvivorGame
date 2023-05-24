@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDied()
     {
-        gameEndScreenScript.DisplayStats(player.weaponManager.GetWeaponStats());
+        gameEndScreenScript.DisplayStats(WeaponManager.Instance.GetWeaponStats());
         gameEndUI.SetActive(true);
         Time.timeScale = 0;
     }

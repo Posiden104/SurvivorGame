@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 namespace Assets.Scripts.Weapons
 {
@@ -10,7 +11,6 @@ namespace Assets.Scripts.Weapons
 
         public override void Activate()
         {
-            Debug.Log("pew pew");
             if (weaponLevel == 0) return;
 
             var b = Object.Instantiate(GameManager.Instance.BulletPrefab, projectileSpawn);
@@ -19,6 +19,12 @@ namespace Assets.Scripts.Weapons
             var dobj = b.GetComponent<DamageObject>();
             dobj.RegisterOnHit(DidDamage);
             onCooldown = true;
+        }
+
+        public override void LevelUp()
+        {
+            base.LevelUp();
+            damage *= dmgScale;
         }
     }
 }

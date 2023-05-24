@@ -6,10 +6,12 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    private static int weaponCount = 3;
-    public static int GunSlot = 0;
-    public static int SwordSlot = 1;
-    public static int OverwatchSlot = 2;
+    public static WeaponManager Instance;
+
+    public readonly static int weaponCount = 3;
+    public readonly static int GunSlot = 0;
+    public readonly static int SwordSlot = 1;
+    public readonly static int OverwatchSlot = 2;
 
     private Weapon[] weapons;
     private Transform projectileSpawn;
@@ -19,12 +21,18 @@ public class WeaponManager : MonoBehaviour
     private Sword sword;
     private Overwatch overwatch;
 
+    private void Awake()
+    {
+        if (Instance != null)
+            Destroy(this);
+        Instance = this;
+    }
+
     void Start()
     {
-        Debug.Log("weapon manager start!");
         weapons = new Weapon[weaponCount];
-        projectileSpawn = transform.GetComponentsInChildren<Transform>().First(c => c.name == "ProjectileSpawn");
-        var p = gameObject.GetComponent<Player>();
+        var p = GameManager.Instance.player;
+        projectileSpawn = p.transform.GetComponentsInChildren<Transform>().First(c => c.name == "ProjectileSpawn");
 
         gun = new Gun(p, projectileSpawn);
         sword = new Sword(p);
@@ -70,5 +78,10 @@ public class WeaponManager : MonoBehaviour
     {
         //Debug.Log($"Clicked button upgrade for weapon {weapons[slot].weaponName}");
         weapons[slot].LevelUp();
+    }
+
+    public string GetWeaponName(int slot)
+    {
+        return weapons[slot].weaponName;
     }
 }

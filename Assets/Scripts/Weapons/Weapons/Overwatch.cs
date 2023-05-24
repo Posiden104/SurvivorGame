@@ -36,6 +36,12 @@ namespace Assets.Scripts.Weapons
             lifetime.Activate();
         }
 
+        public override void LevelUp()
+        {
+            base.LevelUp();
+            damage *= dmgScale;
+        }
+
         public void OnLifetimeEnd()
         {
             target.Damage(damage);
