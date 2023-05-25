@@ -15,11 +15,11 @@ public class WeaponLifetime : MonoBehaviour
         ResetTimer();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (lifetimeTimer > 0) 
         { 
-            lifetimeTimer--;
+            lifetimeTimer -= Time.deltaTime;
             if (lifetimeTimer <= 0)
                 Deactivate();
         }
@@ -57,6 +57,11 @@ public class WeaponLifetime : MonoBehaviour
 
     void ResetTimer()
     {
-        lifetimeTimer = timeActive * GameManager.fixedUpdatesPerSec;
+        lifetimeTimer = timeActive;
+    }
+
+    public float GetRemainingLifetimePercentage()
+    {
+        return lifetimeTimer / timeActive;
     }
 }

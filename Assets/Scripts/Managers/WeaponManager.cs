@@ -1,5 +1,5 @@
 using Assets.Scripts.Weapons;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,12 +8,9 @@ public class WeaponManager : MonoBehaviour
 {
     public static WeaponManager Instance;
 
-    public readonly static int weaponCount = 3;
-    public readonly static int GunSlot = 0;
-    public readonly static int SwordSlot = 1;
-    public readonly static int OverwatchSlot = 2;
+    public readonly static int weaponCount = Enum.GetNames(typeof(WeaponId)).Length;
 
-    private Weapon[] weapons;
+    public Weapon[] weapons;
     private Transform projectileSpawn;
 
     // WEAPONS
@@ -32,15 +29,15 @@ public class WeaponManager : MonoBehaviour
     {
         weapons = new Weapon[weaponCount];
         var p = GameManager.Instance.player;
-        projectileSpawn = p.transform.GetComponentsInChildren<Transform>().First(c => c.name == "ProjectileSpawn");
+        projectileSpawn = p.GetComponentsInChildren<Transform>().First(c => c.name == "ProjectileSpawn");
 
         gun = new Gun(p, projectileSpawn);
         sword = new Sword(p);
         overwatch = new Overwatch(p);
 
-        weapons[GunSlot] = gun;
-        weapons[SwordSlot] = sword;
-        weapons[OverwatchSlot] = overwatch;
+        weapons[(int) WeaponId.GUN] = gun;
+        weapons[(int) WeaponId.SWORD] = sword;
+        weapons[(int) WeaponId.OVERWATCH] = overwatch;
     }
 
     // Update is called once per frame

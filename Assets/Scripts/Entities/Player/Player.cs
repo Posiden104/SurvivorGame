@@ -8,7 +8,7 @@ public class Player : Entity
 {
     public Vector3 dirOrth { get; private set; }
     public Vector3 dirTrue { get; private set; }
-
+    public WeaponId StartingWeapon;
 
     private WeaponManager weaponManager { get; set; }
     private int scrap = 9;
@@ -24,6 +24,7 @@ public class Player : Entity
         dirTrue = Vector3.right;
 
         weaponManager = WeaponManager.Instance;
+        weaponManager.WeaponUpgrade((int)StartingWeapon);
     }
 
     // Update is called once per frame
