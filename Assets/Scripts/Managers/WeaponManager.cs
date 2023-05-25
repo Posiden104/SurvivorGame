@@ -1,17 +1,16 @@
 using Assets.Scripts.Weapons;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    private static int weaponCount = 3;
-    public static int GunSlot = 0;
-    public static int SwordSlot = 1;
-    public static int OverwatchSlot = 2;
+    public static WeaponManager Instance;
 
-    private Weapon[] weapons;
+    public readonly static int weaponCount = Enum.GetNames(typeof(WeaponId)).Length;
+
+    public Weapon[] weapons;
     private Transform projectileSpawn;
 
     // WEAPONS
@@ -19,20 +18,26 @@ public class WeaponManager : MonoBehaviour
     private Sword sword;
     private Overwatch overwatch;
 
+    private void Awake()
+    {
+        if (Instance != null)
+            Destroy(this);
+        Instance = this;
+    }
+
     void Start()
     {
-        Debug.Log("weapon manager start!");
         weapons = new Weapon[weaponCount];
-        projectileSpawn = transform.GetComponentsInChildren<Transform>().First(c => c.name == "ProjectileSpawn");
-        var p = gameObject.GetComponent<Player>();
+        var p = GameManager.Instance.player;
+        projectileSpawn = p.GetComponentsInChildren<Transform>().First(c => c.name == "ProjectileSpawn");
 
         gun = new Gun(p, projectileSpawn);
         sword = new Sword(p);
         overwatch = new Overwatch(p);
 
-        weapons[GunSlot] = gun;
-        weapons[SwordSlot] = sword;
-        weapons[OverwatchSlot] = overwatch;
+        weapons[(int) WeaponId.GUN] = gun;
+        weapons[(int) WeaponId.SWORD] = sword;
+        weapons[(int) WeaponId.OVERWATCH] = overwatch;
     }
 
     // Update is called once per frame
@@ -40,7 +45,7 @@ public class WeaponManager : MonoBehaviour
     {
         foreach (var weapon in weapons)
         {
-            if(weapon != null)
+            if(weapon != null && weapon.weaponLevel > 0)
                 weapon.Update();
         }
     }
@@ -49,7 +54,7 @@ public class WeaponManager : MonoBehaviour
     {
         foreach (var weapon in weapons)
         {
-            if(weapon != null)
+            if(weapon != null && weapon.weaponLevel > 0)
                 weapon.FixedUpdate();
         }
     }
@@ -70,5 +75,10 @@ public class WeaponManager : MonoBehaviour
     {
         //Debug.Log($"Clicked button upgrade for weapon {weapons[slot].weaponName}");
         weapons[slot].LevelUp();
+    }
+
+    public string GetWeaponName(int slot)
+    {
+        return weapons[slot].weaponName;
     }
 }

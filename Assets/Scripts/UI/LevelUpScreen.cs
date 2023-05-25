@@ -6,15 +6,18 @@ using UnityEngine.UI;
 
 public class LevelUpScreen : MonoBehaviour
 {
-    //[SerializeField]
-    //private Transform opt1, opt2, opt3;
+
     [SerializeField]
     private Button opt1Btn, opt2Btn, opt3Btn;
+
+    private string opt1Text, opt2Text, opt3Text;
+    private int opt1Id, opt2Id, opt3Id;
+    private int numWeapons;
+    private IList<int> weaponIds;
 
     // Start is called before the first frame update
     void Start()
     {
-        Show();
     }
 
     // Update is called once per frame
@@ -28,19 +31,55 @@ public class LevelUpScreen : MonoBehaviour
         GameManager.Instance.player.LevelUpDone();
     }
 
+    void PopulateWeaponIds()
+    {
+        numWeapons = WeaponManager.weaponCount;
+        weaponIds = new List<int>();
+        for(int i = 0; i < numWeapons; i++)
+        {
+            weaponIds.Add(i);
+        }
+    }
+
+    void ShuffleWeaponIds()
+    {
+        if (weaponIds == null)
+            PopulateWeaponIds();
+        for (int i = 0; i < weaponIds.Count; i++)
+        {
+            int temp = weaponIds[i];
+            int randomIndex = Random.Range(i, weaponIds.Count);
+            weaponIds[i] = weaponIds[randomIndex];
+            weaponIds[randomIndex] = temp;
+        }
+    }
+
+    void GetUpgradeOptions()
+    {
+        opt1Id = weaponIds[0];
+        opt2Id = weaponIds[1];
+        opt3Id = weaponIds[2];
+        opt1Text = WeaponManager.Instance.GetWeaponName(opt1Id);
+        opt2Text = WeaponManager.Instance.GetWeaponName(opt2Id);
+        opt3Text = WeaponManager.Instance.GetWeaponName(opt3Id);
+    }
+
     public void Show()
     {
+        ShuffleWeaponIds();
+        GetUpgradeOptions();
+
         opt1Btn.onClick.RemoveAllListeners();
-        opt1Btn.onClick.AddListener(delegate { GameManager.Instance.player.weaponManager.WeaponUpgrade(0); });
-        opt1Btn.GetComponentInChildren<TextMeshProUGUI>().text = "Gun";
+        opt1Btn.onClick.AddListener(delegate { WeaponManager.Instance.WeaponUpgrade(opt1Id); });
+        opt1Btn.GetComponentInChildren<TextMeshProUGUI>().text = opt1Text;
 
         opt2Btn.onClick.RemoveAllListeners();
-        opt2Btn.onClick.AddListener(delegate { GameManager.Instance.player.weaponManager.WeaponUpgrade(1); });
-        opt2Btn.GetComponentInChildren<TextMeshProUGUI>().text = "Sword";
+        opt2Btn.onClick.AddListener(delegate { WeaponManager.Instance.WeaponUpgrade(opt2Id); });
+        opt2Btn.GetComponentInChildren<TextMeshProUGUI>().text = opt2Text;
 
         opt3Btn.onClick.RemoveAllListeners();
-        opt3Btn.onClick.AddListener(delegate { GameManager.Instance.player.weaponManager.WeaponUpgrade(2); });
-        opt3Btn.GetComponentInChildren<TextMeshProUGUI>().text = "Overwatch";
+        opt3Btn.onClick.AddListener(delegate { WeaponManager.Instance.WeaponUpgrade(opt3Id); });
+        opt3Btn.GetComponentInChildren<TextMeshProUGUI>().text = opt3Text;
 
         opt1Btn.onClick.AddListener(OptionPicked);
         opt2Btn.onClick.AddListener(OptionPicked);

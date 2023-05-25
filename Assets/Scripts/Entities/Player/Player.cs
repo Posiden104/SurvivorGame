@@ -8,10 +8,11 @@ public class Player : Entity
 {
     public Vector3 dirOrth { get; private set; }
     public Vector3 dirTrue { get; private set; }
-    public WeaponManager weaponManager { get; private set; }
+    public WeaponId StartingWeapon;
 
-
-    private int scrap;
+    private WeaponManager weaponManager { get; set; }
+    [SerializeField]
+    private int scrap = 9;
     private int level = 1;
     private int scrapToNextLevel = 10;
     private float hpScale = 1.2f;
@@ -23,7 +24,8 @@ public class Player : Entity
         dirOrth = Vector3.right;
         dirTrue = Vector3.right;
 
-        weaponManager = GetComponent<WeaponManager>();
+        weaponManager = WeaponManager.Instance;
+        weaponManager.WeaponUpgrade((int)StartingWeapon);
     }
 
     // Update is called once per frame

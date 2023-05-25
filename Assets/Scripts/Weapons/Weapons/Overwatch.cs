@@ -12,7 +12,14 @@ namespace Assets.Scripts.Weapons
 
         private bool lifetimeIsPaused;
         private float pauseTimer;
-        private float PauseDuration = 5f;
+        private float pauseDuration = 2f;
+        private readonly float crosshairMaxScale = 0.1f;
+        private readonly float percentageMin = 0.25f;
+        private readonly float percentageScale;
+
+        private readonly float lifetimeMin = 0.1f;
+        private readonly float lifetimeScale = 0.9f;
+
 
         public Overwatch(Player p) : base(p) 
         {
@@ -21,6 +28,12 @@ namespace Assets.Scripts.Weapons
             weaponCooldown = 5f;
             weaponName = "Overwatch";
 
+            percentageScale = 1f - percentageMin;
+        }
+
+        public override void Setup()
+        {
+            base.Setup();
             crosshair = Object.Instantiate(GameManager.Instance.CrosshairPrefab, player.transform);
 
             lifetime = crosshair.GetComponent<WeaponLifetime>();
@@ -33,7 +46,25 @@ namespace Assets.Scripts.Weapons
 
         public override void Activate()
         {
-            lifetime.Activate();
+            if (!lifetime.Activate())
+            {
+                Debug.LogError("overwatch fail");
+            }
+        }
+
+        public override void LevelUp()
+        {
+            base.LevelUp();
+            if (weaponLevel == 1) return;
+            lifetime.SetLifetime(Mathf.Max(lifetime.GetLifetime() * lifetimeScale, lifetimeMin));
+            pauseDuration *= lifetimeScale;
+        }
+
+        private bool AcquireTarget()
+        {
+            var hasTarget = DistanceManager.Instance.TryGetClosestObjectToPlayer(out var closest);
+            var isEntity = closest.TryGetComponent(out target);
+            return (hasTarget && isEntity);
         }
 
         public void OnLifetimeEnd()
@@ -45,8 +76,9 @@ namespace Assets.Scripts.Weapons
 
         public void OnLifetimeStart()
         {
-            if(!DistanceManager.Instance.TryGetClosestObjectToPlayer(out var closest) || !closest.TryGetComponent(out target))
+            if (!AcquireTarget())
             {
+                Debug.LogError("overwatch target fail");
                 NoTarget();
                 return;
             }
@@ -56,20 +88,30 @@ namespace Assets.Scripts.Weapons
 
         public override void Update()
         {
+            base.Update();
             if (lifetimeIsPaused)
             {
                 pauseTimer += Time.deltaTime;
-                if(pauseTimer >= PauseDuration)
+                if(pauseTimer >= pauseDuration)
                 {
                     lifetime.Activate();
                 }
+                return;
             }
+        }
+
+        public override void FixedUpdate()
+        {
+            base.FixedUpdate();
+            var p = (lifetime.GetRemainingLifetimePercentage() * percentageScale + percentageMin) * crosshairMaxScale;
+            crosshair.transform.localScale = new Vector3(p, p, p);
         }
 
         private void NoTarget()
         {
             lifetime.DeactivateNoEndHook();
             Pause();
+
         }
 
         private void Pause()

@@ -24,6 +24,10 @@ public class Weapon : IWeapon
     protected float startSeconds;
     protected float lifetimeDamage;
 
+    protected float dmgScale = 1.2f;
+    protected float cooldownMin = 0.1f;
+    protected float cooldownScale = 0.9f;
+
     public Weapon(Player p, Transform projSpawn)
     {
         player = p;
@@ -36,11 +40,11 @@ public class Weapon : IWeapon
         onCooldown = true;
     }
 
-    public virtual void FixedUpdate()
+    public virtual void Update()
     {
         if (!onCooldown) return;
-        weaponCooldownTimer++;
-        if (weaponCooldownTimer >= weaponCooldown * GameManager.fixedUpdatesPerSec)
+        weaponCooldownTimer += Time.deltaTime;
+        if (weaponCooldownTimer >= weaponCooldown)
         {
             onCooldown = false;
             weaponCooldownTimer = 0;
@@ -73,15 +77,18 @@ public class Weapon : IWeapon
     public virtual void LevelUp()
     {
         Debug.Log($"level up {weaponName} to level {weaponLevel + 1}");
-        if (weaponLevel == 0)
+        weaponLevel++;
+        if (weaponLevel == 1)
         {
             startSeconds = GameManager.Instance.timer.GetSeconds();
             Setup();
+            return;
         }
-        weaponLevel++;
+        damage *= dmgScale;
+        weaponCooldown = Mathf.Max(cooldownMin, weaponCooldown *= cooldownScale);
     }
 
-    public virtual void Update()
+    public virtual void FixedUpdate()
     {
     }
 
