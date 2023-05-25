@@ -12,10 +12,13 @@ namespace Assets.Scripts.Weapons
 
         private bool lifetimeIsPaused;
         private float pauseTimer;
-        private float PauseDuration = 2f;
-        private float crosshairMaxScale = 0.1f;
-        private float percentageMin = 0.25f;
-        private float percentageScale;
+        private float pauseDuration = 2f;
+        private readonly float crosshairMaxScale = 0.1f;
+        private readonly float percentageMin = 0.25f;
+        private readonly float percentageScale;
+
+        private readonly float lifetimeMin = 0.1f;
+        private readonly float lifetimeScale = 0.9f;
 
 
         public Overwatch(Player p) : base(p) 
@@ -30,7 +33,6 @@ namespace Assets.Scripts.Weapons
 
         public override void Setup()
         {
-            Debug.Log("overwatch setup");
             base.Setup();
             crosshair = Object.Instantiate(GameManager.Instance.CrosshairPrefab, player.transform);
 
@@ -53,7 +55,9 @@ namespace Assets.Scripts.Weapons
         public override void LevelUp()
         {
             base.LevelUp();
-            damage *= dmgScale;
+            if (weaponLevel == 1) return;
+            lifetime.SetLifetime(Mathf.Max(lifetime.GetLifetime() * lifetimeScale, lifetimeMin));
+            pauseDuration *= lifetimeScale;
         }
 
         private bool AcquireTarget()
@@ -84,14 +88,21 @@ namespace Assets.Scripts.Weapons
 
         public override void Update()
         {
+            base.Update();
             if (lifetimeIsPaused)
             {
                 pauseTimer += Time.deltaTime;
-                if(pauseTimer >= PauseDuration)
+                if(pauseTimer >= pauseDuration)
                 {
                     lifetime.Activate();
                 }
+                return;
             }
+        }
+
+        public override void FixedUpdate()
+        {
+            base.FixedUpdate();
             var p = (lifetime.GetRemainingLifetimePercentage() * percentageScale + percentageMin) * crosshairMaxScale;
             crosshair.transform.localScale = new Vector3(p, p, p);
         }

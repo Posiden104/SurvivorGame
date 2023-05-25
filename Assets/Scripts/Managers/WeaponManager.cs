@@ -45,7 +45,7 @@ public class WeaponManager : MonoBehaviour
     {
         foreach (var weapon in weapons)
         {
-            if(weapon != null)
+            if(weapon != null && weapon.weaponLevel > 0)
                 weapon.Update();
         }
     }
@@ -54,7 +54,7 @@ public class WeaponManager : MonoBehaviour
     {
         foreach (var weapon in weapons)
         {
-            if(weapon != null)
+            if(weapon != null && weapon.weaponLevel > 0)
                 weapon.FixedUpdate();
         }
     }

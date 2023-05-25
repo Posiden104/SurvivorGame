@@ -10,6 +10,9 @@ namespace Assets.Scripts.Weapons
         private RotationalMovement rm;
         private WeaponLifetime lifetime;
 
+        private readonly float lifetimeMax = 0.1f;
+        private readonly float lifetimeScale = 1.2f;
+
         public Sword(Player p) : base(p)
         {
             weaponName = "Sword";
@@ -36,7 +39,8 @@ namespace Assets.Scripts.Weapons
         public override void LevelUp()
         {
             base.LevelUp();
-            damage *= dmgScale;
+            if (weaponLevel == 1) return;
+            lifetime.SetLifetime(Mathf.Min(lifetime.GetLifetime() * lifetimeScale, lifetimeMax));
         }
 
         public void OnLifetimeEnd()
@@ -47,11 +51,6 @@ namespace Assets.Scripts.Weapons
         public void OnLifetimeStart()
         {
             onCooldown = false;
-        }
-
-        public override void Update()
-        {
-
         }
     }
 }

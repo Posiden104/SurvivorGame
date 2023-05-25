@@ -50,6 +50,11 @@ public class WeaponLifetime : MonoBehaviour
         timeActive = time;
     }
 
+    public float GetLifetime()
+    {
+        return timeActive;
+    }
+
     public void DeactivateNoEndHook()
     {
         gameObject.SetActive(false);

@@ -24,7 +24,7 @@ namespace Assets.Scripts.Weapons
         public override void LevelUp()
         {
             base.LevelUp();
-            damage *= dmgScale;
+            if (weaponLevel == 1) return;
         }
     }
 }

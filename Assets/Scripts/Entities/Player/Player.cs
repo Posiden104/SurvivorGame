@@ -11,6 +11,7 @@ public class Player : Entity
     public WeaponId StartingWeapon;
 
     private WeaponManager weaponManager { get; set; }
+    [SerializeField]
     private int scrap = 9;
     private int level = 1;
     private int scrapToNextLevel = 10;
