@@ -1,5 +1,6 @@
 using Assets.Scripts.Weapons;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -24,7 +25,16 @@ public class Player : Entity
         dirOrth = Vector3.right;
         dirTrue = Vector3.right;
 
-        weaponManager = WeaponManager.Instance;
+        StartCoroutine(LoadWeaponManager());
+    }
+
+    IEnumerator LoadWeaponManager()
+    {
+        while (weaponManager == null)
+        {
+            weaponManager = WeaponManager.Instance;
+            yield return new WaitForSeconds(0.1f);
+        }
         weaponManager.WeaponUpgrade((int)StartingWeapon);
     }
 
