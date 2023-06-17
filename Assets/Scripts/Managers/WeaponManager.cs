@@ -27,7 +27,6 @@ public class WeaponManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("weapon manager start");
         weapons = new Weapon[weaponCount];
         var p = GameManager.Instance.player;
         projectileSpawn = p.GetComponentsInChildren<Transform>().First(c => c.name == "ProjectileSpawn");

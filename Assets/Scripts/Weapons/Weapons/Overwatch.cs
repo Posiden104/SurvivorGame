@@ -62,7 +62,7 @@ namespace Assets.Scripts.Weapons
 
         private bool AcquireTarget()
         {
-            var hasTarget = DistanceManager.Instance.TryGetClosestObjectToPlayer(out var closest);
+            var hasTarget = DistanceManager.Instance.TryGetClosestEnemyToPlayer(out var closest);
             var isEntity = closest.TryGetComponent(out target);
             return (hasTarget && isEntity);
         }

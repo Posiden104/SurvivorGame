@@ -10,6 +10,7 @@ public class Player : Entity
     public Vector3 dirOrth { get; private set; }
     public Vector3 dirTrue { get; private set; }
     public WeaponId StartingWeapon;
+    public float magnetRange;
 
     private WeaponManager weaponManager { get; set; }
     [SerializeField]

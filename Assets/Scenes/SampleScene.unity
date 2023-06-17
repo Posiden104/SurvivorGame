@@ -2403,6 +2403,7 @@ MonoBehaviour:
   MaxHP: 100
   ShowDamageLog: 0
   StartingWeapon: 2
+  magnetRange: 1
   scrap: 0
 --- !u!1 &1133440642
 GameObject:
@@ -5117,7 +5118,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.37
 --- !u!1001 &2081771876
 PrefabInstance:
   m_ObjectHideFlags: 0
