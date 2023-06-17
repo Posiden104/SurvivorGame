@@ -2402,7 +2402,7 @@ MonoBehaviour:
   HP: 0
   MaxHP: 100
   ShowDamageLog: 0
-  StartingWeapon: 2
+  StartingWeapon: 0
   magnetRange: 1
   scrap: 0
 --- !u!1 &1133440642
