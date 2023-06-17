@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8210477121719746095}
   - component: {fileID: 6762598154572671560}
   - component: {fileID: 2233281941651812410}
+  - component: {fileID: 7153856175284974554}
+  - component: {fileID: -7843561468875986675}
   m_Layer: 20
   m_Name: Loot
   m_TagString: Untagged
@@ -124,3 +126,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.705514, y: 2.6616204}
   m_EdgeRadius: 0
+--- !u!114 &7153856175284974554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2772921890469136095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2436ff0439220cd4b99fba2ad4d1e61e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMagnitized: 0
+  lerpDuration: 1
+--- !u!114 &-7843561468875986675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2772921890469136095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae7a96478d244934e8c144c8b199e26d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

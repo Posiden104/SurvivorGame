@@ -1,5 +1,6 @@
 using Assets.Scripts.Weapons;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class Player : Entity
     public Vector3 dirOrth { get; private set; }
     public Vector3 dirTrue { get; private set; }
     public WeaponId StartingWeapon;
+    public float magnetRange;
 
     private WeaponManager weaponManager { get; set; }
     [SerializeField]
@@ -24,7 +26,16 @@ public class Player : Entity
         dirOrth = Vector3.right;
         dirTrue = Vector3.right;
 
-        weaponManager = WeaponManager.Instance;
+        StartCoroutine(LoadWeaponManager());
+    }
+
+    IEnumerator LoadWeaponManager()
+    {
+        while (weaponManager == null)
+        {
+            weaponManager = WeaponManager.Instance;
+            yield return new WaitForSeconds(0.1f);
+        }
         weaponManager.WeaponUpgrade((int)StartingWeapon);
     }
 
