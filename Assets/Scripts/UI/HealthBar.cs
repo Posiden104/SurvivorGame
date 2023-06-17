@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public Image healthBar; 
+    public Image healthBar;
+    public Image expBar;
 
     private Player player;
 
@@ -17,6 +18,7 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBar.fillAmount = player.HP / player.MaxHP; 
+        healthBar.fillAmount = player.GetHpPercentage();
+        expBar.fillAmount = player.GetExpPercentage();
     }
 }

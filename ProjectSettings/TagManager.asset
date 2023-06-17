@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bullet
   - Melee Weapon
+  - PlayerPickupSensor
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -27,7 +29,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Scrap
   - 
   - 
   - 
@@ -42,4 +44,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Effects
+    uniqueID: 1507661595
     locked: 0

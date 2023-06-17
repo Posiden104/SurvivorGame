@@ -25,3 +25,10 @@ public enum ComparisonType
     SmallerOrEqual = 5,
     GreaterOrEqual = 6
 }
+
+public enum WeaponId
+{
+    GUN = 0,
+    SWORD = 1,
+    OVERWATCH = 2
+}

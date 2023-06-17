@@ -1,22 +1,30 @@
+using UnityEditor;
 using UnityEngine;
 namespace Assets.Scripts.Weapons
 {
     public class Gun : Weapon
     {
-        public Gun(Player p) : base(p)
+        public Gun(Player p, Transform projSpawn) : base(p, projSpawn)
         {
-            onCooldown = true;
             weaponName = "Gun";
         }
 
         public override void Activate()
         {
-            var b = Object.Instantiate(GameManager.Instance.bulletPrefab, projectileSpawn);
+            if (weaponLevel == 0) return;
+
+            var b = Object.Instantiate(GameManager.Instance.BulletPrefab, projectileSpawn);
             var bm = b.GetComponent<BulletMovement>();
             bm.normalizedDir = player.dirOrth;
             var dobj = b.GetComponent<DamageObject>();
             dobj.RegisterOnHit(DidDamage);
             onCooldown = true;
+        }
+
+        public override void LevelUp()
+        {
+            base.LevelUp();
+            if (weaponLevel == 1) return;
         }
     }
 }
