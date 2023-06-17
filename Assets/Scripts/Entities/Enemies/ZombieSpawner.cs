@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
@@ -25,9 +27,9 @@ public class ZombieSpawner : MonoBehaviour
             var num = Random.value;
             GameObject enemy; // = GameManager.Instance.zombieSlowPrefab;
             if (num >= 0.5f)
-                enemy = GameManager.Instance.ZombiePrefab;
+                enemy = GameManager.Instance.zombiePrefab;
             else
-                enemy = GameManager.Instance.ZombieSlowPrefab;
+                enemy = GameManager.Instance.zombieSlowPrefab;
             Instantiate(enemy, transform.position, transform.rotation);
             timer = 0;
         }

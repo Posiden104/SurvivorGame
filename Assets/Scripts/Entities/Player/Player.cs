@@ -1,6 +1,4 @@
 using Assets.Scripts.Weapons;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,43 +7,37 @@ public class Player : Entity
 {
     public Vector3 dirOrth { get; private set; }
     public Vector3 dirTrue { get; private set; }
-    public WeaponId StartingWeapon;
-    public float magnetRange;
 
-    private WeaponManager weaponManager { get; set; }
-    [SerializeField]
-    private int scrap = 9;
-    private int level = 1;
-    private int scrapToNextLevel = 10;
-    private float hpScale = 1.2f;
-    private float xpScale = 1.2f;
+    private List<IWeapon> weapons;
+    private Transform projectileSpawn;
 
     // Start is called before the first frame update
     void Start()
     {
+        weapons = new();
+        projectileSpawn = transform.GetComponentsInChildren<Transform>().First(c => c.name == "ProjectileSpawn");
         dirOrth = Vector3.right;
         dirTrue = Vector3.right;
 
-        StartCoroutine(LoadWeaponManager());
-    }
-
-    IEnumerator LoadWeaponManager()
-    {
-        while (weaponManager == null)
-        {
-            weaponManager = WeaponManager.Instance;
-            yield return new WaitForSeconds(0.1f);
-        }
-        weaponManager.WeaponUpgrade((int)StartingWeapon);
+        AddWeapon(new Gun(this));
+        AddWeapon(new Sword(this));
     }
 
     // Update is called once per frame
     void Update()
     {
+        foreach (var weapon in weapons)
+        {
+            weapon.Update();
+        }
     }
 
     private void FixedUpdate()
     {
+        foreach(var weapon in weapons)
+        {
+            weapon.FixedUpdate();
+        }
     }
 
     public override void Kill()
@@ -53,6 +45,22 @@ public class Player : Entity
         GameManager.Instance.PlayerDied();
     }
 
+    public List<WeaponStats> GetWeaponStats()
+    {
+        List<WeaponStats> weaponStats = new();
+        foreach(var weapon in weapons)
+        {
+            weaponStats.Add(weapon.GetStats());
+            //Debug.Log($"{ws.Name} - Total Damage: {ws.DamageDealt} | DPS: {ws.DPS})");
+        }
+        return weaponStats;
+    }
+
+    void AddWeapon(Weapon w)
+    {
+        weapons.Add(w);
+        w.projectileSpawn = projectileSpawn;
+    }
 
     public void SetDir(Vector3 dir)
     {
@@ -75,42 +83,5 @@ public class Player : Entity
         {
             dirOrth = Vector3.left;
         }
-    }
-
-    public void PickupScrap(int scrapValue)
-    {
-        scrap += scrapValue;
-        if(scrap >= scrapToNextLevel)
-        {
-            scrap -= scrapToNextLevel;
-            LevelUp();
-        }
-    }
-
-    public void LevelUp()
-    {
-        level++;
-        scrapToNextLevel = (int)(scrapToNextLevel * xpScale);
-        MaxHP = (int) (MaxHP * hpScale);
-        HP = (int) (HP * hpScale);
-
-        Time.timeScale = 0;
-        GameManager.Instance.levelUpScreenScript.Show();
-    }
-
-    public void LevelUpDone()
-    {
-        GameManager.Instance.levelUpScreen.SetActive(false);
-        Time.timeScale = 1;
-    }
-
-    public float GetExpPercentage()
-    {
-        return (float) (scrap) / scrapToNextLevel;
-    }
-
-    public float GetHpPercentage()
-    {
-        return HP / MaxHP;
     }
 }
