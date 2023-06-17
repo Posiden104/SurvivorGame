@@ -14,6 +14,10 @@ public class Enemy : Entity
     protected float dmgResetCooldown;
     [SerializeField]
     protected GameObject myPrefab;
+    [SerializeField]
+    protected float lootDropProbability;
+    [SerializeField]
+    protected int lootValue;
 
     protected Rigidbody2D rb;
     protected EnemyMovement em;
@@ -65,5 +69,16 @@ public class Enemy : Entity
     {
         timer = (int) (GameManager.fixedUpdatesPerSec * damageCooldown - GameManager.fixedUpdatesPerSec * dmgResetCooldown);
         collidingWithPlayer = false;
+    }
+
+    public override void Kill()
+    {
+        var rnd = Random.Range(0, 100);
+        if(rnd <= lootDropProbability)
+        {
+            var l = Instantiate(GameManager.Instance.ScrapPrefab, transform.position, transform.rotation, GameManager.Instance.LootContainer.transform);
+            l.GetComponent<LootScript>().Value = lootValue;
+        }
+        base.Kill();
     }
 }

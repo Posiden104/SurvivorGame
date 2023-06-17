@@ -4,7 +4,7 @@ using UnityEngine;
 public class WeaponLifetime : MonoBehaviour
 {
     [SerializeField]
-    protected float lifetime;
+    protected float timeActive;
     protected float lifetimeTimer;
 
     protected IHasLifetime lifetimeManager;
@@ -15,16 +15,19 @@ public class WeaponLifetime : MonoBehaviour
         ResetTimer();
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        lifetimeTimer--;
-        if (lifetimeTimer <= 0)
-            Deactivate();
+        if (lifetimeTimer > 0) 
+        { 
+            lifetimeTimer -= Time.deltaTime;
+            if (lifetimeTimer <= 0)
+                Deactivate();
+        }
     }
 
     public void Deactivate()
     {
-        gameObject.SetActive(false);
+        DeactivateNoEndHook();
         lifetimeManager.OnLifetimeEnd();
     }
 
@@ -44,11 +47,26 @@ public class WeaponLifetime : MonoBehaviour
 
     public void SetLifetime(float time)
     {
-        lifetime = time;
+        timeActive = time;
+    }
+
+    public float GetLifetime()
+    {
+        return timeActive;
+    }
+
+    public void DeactivateNoEndHook()
+    {
+        gameObject.SetActive(false);
     }
 
     void ResetTimer()
     {
-        lifetimeTimer = lifetime * GameManager.fixedUpdatesPerSec;
+        lifetimeTimer = timeActive;
+    }
+
+    public float GetRemainingLifetimePercentage()
+    {
+        return lifetimeTimer / timeActive;
     }
 }
