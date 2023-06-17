@@ -14,6 +14,5 @@ namespace Assets.Scripts.Weapons
         void FixedUpdate();
         void DidDamage(float dmg);
         WeaponStats GetStats();
-        void Setup();
     }
 }

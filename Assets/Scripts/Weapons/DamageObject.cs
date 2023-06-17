@@ -17,6 +17,7 @@ public class DamageObject : MonoBehaviour
 
     public void Hit(Enemy enemy)
     {
+        Debug.Log($"Hit {enemy.name}");
         enemy.Damage(damage);
         onHitActions(damage);
         if (!canBreak) return;

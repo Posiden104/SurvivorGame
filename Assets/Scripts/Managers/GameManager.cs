@@ -9,20 +9,15 @@ public class GameManager : MonoBehaviour
     public Player player { get; private set; }
 
     // WEAPONS
-    public GameObject BulletPrefab;
-    public GameObject SwordPrefab;
-    public GameObject CrosshairPrefab;
-
-    // ENEMIES
-    public GameObject ZombiePrefab;
-    public GameObject ZombieSlowPrefab;
-
-    // LOOT
-    public GameObject LootContainer;
-    public GameObject ScrapPrefab;
+    public GameObject bulletPrefab;
+    public GameObject swordPrefab;
 
     // SPAWNERS
-    public GameObject ZombieSpawner;
+    public GameObject zombieSpawner;
+
+    // ENEMIES
+    public GameObject zombiePrefab;
+    public GameObject zombieSlowPrefab;
 
     // UI
     public Timer timer;
@@ -30,22 +25,18 @@ public class GameManager : MonoBehaviour
     public GameEndScreen gameEndScreenScript;
     public GameObject gameOverUI;
     public GameObject gameStartUI;
-    public GameObject levelUpScreen;
-    public LevelUpScreen levelUpScreenScript;
 
     // PRIVATE
 
     void Awake()
     {
-        if (Instance != null)
-            Destroy(this);
         Instance = this;
         Time.timeScale = 0;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     public void Begin()
@@ -62,7 +53,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDied()
     {
-        gameEndScreenScript.DisplayStats(WeaponManager.Instance.GetWeaponStats());
+        gameEndScreenScript.DisplayStats(player.GetWeaponStats());
         gameEndUI.SetActive(true);
         Time.timeScale = 0;
     }
