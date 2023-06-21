@@ -5,14 +5,27 @@ using UnityEngine;
 public class Magnetic : MonoBehaviour
 {
     public bool isMagnitized = false;
+    public bool isSuperMagnetic = true;
     private float speed = 10f;
 
     private Transform target;
 
-    public void Magnetize(Transform target)
+    private void Start()
     {
-        this.target = target;
+        target = GameManager.Instance.player.transform;
+    }
+
+    public void Magnetize()
+    {
         isMagnitized = true;
+    }
+
+    public void SuperMagnetize()
+    {
+        if (isSuperMagnetic)
+        {
+            Magnetize();
+        }
     }
 
     public void DeMagnetize()
@@ -30,7 +43,7 @@ public class Magnetic : MonoBehaviour
 
         } else if(GetComponent<DistanceToPlayer>().GetDistance() < GameManager.Instance.player.magnetRange)
         {
-            Magnetize(GameManager.Instance.player.transform);
+            Magnetize();
         }
     }
 }

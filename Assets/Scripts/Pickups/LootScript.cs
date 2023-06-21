@@ -1,6 +1,7 @@
+using Assets.Scripts.Pickups;
 using UnityEngine;
 
-public class LootScript : MonoBehaviour
+public class LootScript : PickupBase
 {
     public int Value { get; set; } = 1;
 
@@ -18,12 +19,9 @@ public class LootScript : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = Instantiate(images[idx]) as Sprite;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public override void OnPlayerPickup()
     {
-        if (other.CompareTag("PlayerPickupSensor"))
-        {
-            GameManager.Instance.player.PickupScrap(Mathf.Max(Value, 1));
-            Destroy(gameObject);
-        }
+        GameManager.Instance.player.PickupScrap(Mathf.Max(Value, 1));
+        base.OnPlayerPickup();
     }
 }
