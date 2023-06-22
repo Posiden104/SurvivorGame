@@ -73,12 +73,16 @@ public class WeaponManager : MonoBehaviour
 
     public void WeaponUpgrade(int slot)
     {
-        //Debug.Log($"Clicked button upgrade for weapon {weapons[slot].weaponName}");
         weapons[slot].LevelUp();
     }
 
     public string GetWeaponName(int slot)
     {
         return weapons[slot].weaponName;
+    }
+
+    public string GetLevelUpStats(int slot)
+    {
+        return weapons[slot].GetLevelUpStats();
     }
 }

@@ -1,5 +1,6 @@
 using Assets.Scripts.Weapons;
 using System;
+using System.Text;
 using UnityEngine;
 
 public struct WeaponStats
@@ -70,10 +71,6 @@ public class Weapon : IWeapon
         lifetimeDamage += dmg;
     }
 
-    public virtual void Activate()
-    {
-    }
-
     public virtual void LevelUp()
     {
         Debug.Log($"level up {weaponName} to level {weaponLevel + 1}");
@@ -88,6 +85,25 @@ public class Weapon : IWeapon
         weaponCooldown = Mathf.Max(cooldownMin, weaponCooldown *= cooldownScale);
     }
 
+    public string GetLevelUpStats()
+    {
+        var sb = new StringBuilder();
+
+        sb.AppendLine(weaponName);
+        sb.Append("Damage ");
+        sb.Append(damage);
+        sb.Append(" -> ");
+        sb.Append(damage * dmgScale);
+        sb.AppendLine();
+
+        return sb.ToString();
+    }
+
+    #region empty base methods
+    public virtual void Activate()
+    {
+    }
+
     public virtual void FixedUpdate()
     {
     }
@@ -95,4 +111,5 @@ public class Weapon : IWeapon
     public virtual void Setup()
     {
     }
+    #endregion
 }
