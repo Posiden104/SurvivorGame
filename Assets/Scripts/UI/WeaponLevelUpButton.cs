@@ -11,7 +11,11 @@ public class WeaponLevelUpButton : MonoBehaviour
     [SerializeField]
     private Button button;
     [SerializeField]
-    private TextMeshProUGUI tmp;
+    private TextMeshProUGUI title;
+    [SerializeField]
+    private TextMeshProUGUI text;
+
+
 
     public void OptionPicked()
     {
@@ -22,6 +26,7 @@ public class WeaponLevelUpButton : MonoBehaviour
     public void SetUpgrade(int weaponId)
     {
         id = weaponId;
-        tmp.text = WeaponManager.Instance.GetLevelUpStats(id);
+        title.text = WeaponManager.Instance.GetWeaponName(id);
+        text.text = WeaponManager.Instance.GetLevelUpStats(id);
     }
 }

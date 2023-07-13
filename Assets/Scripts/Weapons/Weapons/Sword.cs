@@ -4,8 +4,6 @@ namespace Assets.Scripts.Weapons
 {
     public class Sword : Weapon, IHasLifetime
     {
-        // knockback
-
         private GameObject sword;
         private RotationalMovement rm;
         private WeaponLifetime lifetime;
@@ -27,6 +25,7 @@ namespace Assets.Scripts.Weapons
             lifetime.SetWeapon(this);
 
             var dobj = sword.GetComponent<DamageObject>();
+            dobj.baseWeapon = this;
             dobj.RegisterOnHit(DidDamage);
         }
 

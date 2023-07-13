@@ -25,9 +25,9 @@ public class Weapon : IWeapon
     protected float startSeconds;
     protected float lifetimeDamage;
 
-    protected float dmgScale = 1.2f;
+    protected float dmgScale = 0.2f;
     protected float cooldownMin = 0.1f;
-    protected float cooldownScale = 0.9f;
+    protected float cooldownScale = 0.005f;
 
     public Weapon(Player p, Transform projSpawn)
     {
@@ -73,7 +73,7 @@ public class Weapon : IWeapon
 
     public virtual void LevelUp()
     {
-        Debug.Log($"level up {weaponName} to level {weaponLevel + 1}");
+        //Debug.Log($"level up {weaponName} to level {weaponLevel + 1}");
         weaponLevel++;
         if (weaponLevel == 1)
         {
@@ -81,19 +81,20 @@ public class Weapon : IWeapon
             Setup();
             return;
         }
-        damage *= dmgScale;
-        weaponCooldown = Mathf.Max(cooldownMin, weaponCooldown *= cooldownScale);
+        damage += (weaponLevel + 1) * dmgScale;
+        weaponCooldown = Mathf.Max(cooldownMin, weaponCooldown -= (weaponLevel + 1) * cooldownScale);
     }
 
     public string GetLevelUpStats()
     {
         var sb = new StringBuilder();
 
-        sb.AppendLine(weaponName);
-        sb.Append("Damage ");
-        sb.Append(damage);
-        sb.Append(" -> ");
-        sb.Append(damage * dmgScale);
+        sb.AppendLine($"Lv: {weaponLevel} => {weaponLevel + 1}");
+        sb.AppendLine();
+        sb.Append($"Damage: {damage.ToString("n2")}");
+        sb.AppendLine(weaponLevel == 0 ? "": $" => {(damage + ((weaponLevel + 1) * dmgScale)).ToString("n2")}");
+        sb.Append($"Cooldown: {weaponCooldown.ToString("n2")}");
+        sb.AppendLine(weaponLevel == 0 ? "" : $" => {(Mathf.Max(cooldownMin, weaponCooldown - ((weaponLevel + 1) * cooldownScale))).ToString("n2")}");
         sb.AppendLine();
 
         return sb.ToString();
