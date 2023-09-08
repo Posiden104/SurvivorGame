@@ -15,5 +15,6 @@ namespace Assets.Scripts.Weapons
         void DidDamage(float dmg);
         WeaponStats GetStats();
         void Setup();
+        string GetLevelUpStats();
     }
 }

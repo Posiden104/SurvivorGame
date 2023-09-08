@@ -1,13 +1,13 @@
 using System;
 using UnityEngine;
 using UnityEditor;
+using Assets.Scripts.Weapons;
 
 public class DamageObject : MonoBehaviour
 {
     [SerializeField]
-    private float damage;
-    [SerializeField]
     private bool causesKnockback, canBreak;
+    public Weapon baseWeapon;
 
     [SerializeField]
     //[DrawIf("canBreak", true)]
@@ -17,8 +17,8 @@ public class DamageObject : MonoBehaviour
 
     public void Hit(Enemy enemy)
     {
-        enemy.Damage(damage);
-        onHitActions(damage);
+        enemy.Damage(baseWeapon.damage);
+        onHitActions(baseWeapon.damage);
         if (!canBreak) return;
         hitsToDie--;
         if (hitsToDie == 0)

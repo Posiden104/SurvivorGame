@@ -1,5 +1,6 @@
 using Assets.Scripts.Weapons;
 using System;
+using System.Text;
 using UnityEngine;
 
 public struct WeaponStats
@@ -24,9 +25,9 @@ public class Weapon : IWeapon
     protected float startSeconds;
     protected float lifetimeDamage;
 
-    protected float dmgScale = 1.2f;
+    protected float dmgScale = 0.2f;
     protected float cooldownMin = 0.1f;
-    protected float cooldownScale = 0.9f;
+    protected float cooldownScale = 0.005f;
 
     public Weapon(Player p, Transform projSpawn)
     {
@@ -70,13 +71,9 @@ public class Weapon : IWeapon
         lifetimeDamage += dmg;
     }
 
-    public virtual void Activate()
-    {
-    }
-
     public virtual void LevelUp()
     {
-        Debug.Log($"level up {weaponName} to level {weaponLevel + 1}");
+        //Debug.Log($"level up {weaponName} to level {weaponLevel + 1}");
         weaponLevel++;
         if (weaponLevel == 1)
         {
@@ -84,8 +81,27 @@ public class Weapon : IWeapon
             Setup();
             return;
         }
-        damage *= dmgScale;
-        weaponCooldown = Mathf.Max(cooldownMin, weaponCooldown *= cooldownScale);
+        damage += (weaponLevel + 1) * dmgScale;
+        weaponCooldown = Mathf.Max(cooldownMin, weaponCooldown -= (weaponLevel + 1) * cooldownScale);
+    }
+
+    public virtual string GetLevelUpStats()
+    {
+        var sb = new StringBuilder();
+
+        sb.AppendLine($"Lv: {weaponLevel} => {weaponLevel + 1}");
+        sb.AppendLine();
+        sb.Append($"Damage: {damage:n2}");
+        sb.AppendLine(weaponLevel == 0 ? "": $" => {(damage + ((weaponLevel + 1) * dmgScale)):n2}");
+        sb.Append($"Cooldown: {weaponCooldown:n2}");
+        sb.AppendLine(weaponLevel == 0 ? "" : $" => {(Mathf.Max(cooldownMin, weaponCooldown - ((weaponLevel + 1) * cooldownScale))):n2}");
+
+        return sb.ToString();
+    }
+
+    #region empty base methods
+    public virtual void Activate()
+    {
     }
 
     public virtual void FixedUpdate()
@@ -95,4 +111,5 @@ public class Weapon : IWeapon
     public virtual void Setup()
     {
     }
+    #endregion
 }

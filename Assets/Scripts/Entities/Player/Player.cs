@@ -11,6 +11,7 @@ public class Player : Entity
     public Vector3 dirTrue { get; private set; }
     public WeaponId StartingWeapon;
     public float magnetRange;
+    public int TotalKills;
 
     private WeaponManager weaponManager { get; set; }
     [SerializeField]

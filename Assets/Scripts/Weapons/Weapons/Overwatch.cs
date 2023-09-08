@@ -1,4 +1,5 @@
-﻿using System.Transactions;
+﻿using System.Text;
+using System.Transactions;
 using UnityEngine;
 
 namespace Assets.Scripts.Weapons
@@ -29,11 +30,6 @@ namespace Assets.Scripts.Weapons
             weaponName = "Overwatch";
 
             percentageScale = 1f - percentageMin;
-        }
-
-        public override void Setup()
-        {
-            base.Setup();
             crosshair = Object.Instantiate(GameManager.Instance.CrosshairPrefab, player.transform);
 
             lifetime = crosshair.GetComponent<WeaponLifetime>();
@@ -41,6 +37,14 @@ namespace Assets.Scripts.Weapons
 
             cm = crosshair.GetComponent<CrosshairMovement>();
             cm.RegisterOnTargetDeath(NoTarget);
+
+            crosshair.SetActive(false);
+        }
+
+        public override void Setup()
+        {
+            base.Setup();
+            crosshair.SetActive(true);
             OnLifetimeStart();
         }
 
@@ -58,6 +62,19 @@ namespace Assets.Scripts.Weapons
             if (weaponLevel == 1) return;
             lifetime.SetLifetime(Mathf.Max(lifetime.GetLifetime() * lifetimeScale, lifetimeMin));
             pauseDuration *= lifetimeScale;
+        }
+
+        public override string GetLevelUpStats()
+        {
+            var baseStr = base.GetLevelUpStats();
+            var sb = new StringBuilder();
+
+            sb.Append(baseStr);
+            sb.Append($"Targeting Time: {lifetime.GetLifetime()}");
+            sb.AppendLine(weaponLevel == 0 ? "" : $" => {Mathf.Max(lifetime.GetLifetime() * lifetimeScale, lifetimeMin):n2}");
+            sb.AppendLine();
+
+            return sb.ToString();
         }
 
         private bool AcquireTarget()

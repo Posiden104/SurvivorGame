@@ -23,6 +23,8 @@ public class GameEndScreen : MonoBehaviour
     public void DisplayStats(List<WeaponStats> stats)
     {
         StringBuilder sb = new();
+        sb.AppendLine($"Total Kills: {GameManager.Instance.player.TotalKills}");
+        sb.AppendLine();
         foreach (var ws in stats)
         {
             sb.AppendLine($"{ws.Name} - Total Damage: {ws.DamageDealt} | DPS: {ws.DPS:0.00}");

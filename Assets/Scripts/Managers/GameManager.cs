@@ -24,14 +24,17 @@ public class GameManager : MonoBehaviour
     // SPAWNERS
     public GameObject ZombieSpawner;
 
-    // UI
-    public Timer timer;
-    public GameObject gameEndUI;
-    public GameEndScreen gameEndScreenScript;
-    public GameObject gameOverUI;
+    // UI Objects
     public GameObject gameStartUI;
     public GameObject levelUpScreen;
+    public GameObject gameOverUI;
+    public GameObject endGameStatsScreen;
+
+    // UI Scripts
+    public Timer timer;
+    public GameEndScreen gameEndScreenScript;
     public LevelUpScreen levelUpScreenScript;
+
 
     // PRIVATE
 
@@ -42,6 +45,15 @@ public class GameManager : MonoBehaviour
         Instance = this;
         Time.timeScale = 0;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        SetupStartingUI();
+    }
+
+    private void SetupStartingUI()
+    {
+        gameStartUI.SetActive(true);
+        levelUpScreen.SetActive(false);
+        endGameStatsScreen.SetActive(false);
+        gameOverUI.SetActive(false);
     }
 
     private void Start()
@@ -63,13 +75,13 @@ public class GameManager : MonoBehaviour
     public void PlayerDied()
     {
         gameEndScreenScript.DisplayStats(WeaponManager.Instance.GetWeaponStats());
-        gameEndUI.SetActive(true);
+        endGameStatsScreen.SetActive(true);
         Time.timeScale = 0;
     }
 
     public void GameOver()
     {
-        gameEndUI.SetActive(false);
+        endGameStatsScreen.SetActive(false);
         gameOverUI.SetActive(true);
     }
 

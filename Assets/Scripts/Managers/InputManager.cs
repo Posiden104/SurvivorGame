@@ -18,5 +18,9 @@ public class InputManager : MonoBehaviour
             GameManager.Instance.gameStartUI.SetActive(false);
             GameManager.Instance.PlayerDied();
         }
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            GameManager.Instance.player.LevelUp();
+        }
     }
 }
