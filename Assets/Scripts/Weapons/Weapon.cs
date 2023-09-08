@@ -95,7 +95,6 @@ public class Weapon : IWeapon
         sb.AppendLine(weaponLevel == 0 ? "": $" => {(damage + ((weaponLevel + 1) * dmgScale)):n2}");
         sb.Append($"Cooldown: {weaponCooldown:n2}");
         sb.AppendLine(weaponLevel == 0 ? "" : $" => {(Mathf.Max(cooldownMin, weaponCooldown - ((weaponLevel + 1) * cooldownScale))):n2}");
-        sb.AppendLine();
 
         return sb.ToString();
     }
