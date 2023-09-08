@@ -85,16 +85,16 @@ public class Weapon : IWeapon
         weaponCooldown = Mathf.Max(cooldownMin, weaponCooldown -= (weaponLevel + 1) * cooldownScale);
     }
 
-    public string GetLevelUpStats()
+    public virtual string GetLevelUpStats()
     {
         var sb = new StringBuilder();
 
         sb.AppendLine($"Lv: {weaponLevel} => {weaponLevel + 1}");
         sb.AppendLine();
-        sb.Append($"Damage: {damage.ToString("n2")}");
-        sb.AppendLine(weaponLevel == 0 ? "": $" => {(damage + ((weaponLevel + 1) * dmgScale)).ToString("n2")}");
-        sb.Append($"Cooldown: {weaponCooldown.ToString("n2")}");
-        sb.AppendLine(weaponLevel == 0 ? "" : $" => {(Mathf.Max(cooldownMin, weaponCooldown - ((weaponLevel + 1) * cooldownScale))).ToString("n2")}");
+        sb.Append($"Damage: {damage:n2}");
+        sb.AppendLine(weaponLevel == 0 ? "": $" => {(damage + ((weaponLevel + 1) * dmgScale)):n2}");
+        sb.Append($"Cooldown: {weaponCooldown:n2}");
+        sb.AppendLine(weaponLevel == 0 ? "" : $" => {(Mathf.Max(cooldownMin, weaponCooldown - ((weaponLevel + 1) * cooldownScale))):n2}");
         sb.AppendLine();
 
         return sb.ToString();
