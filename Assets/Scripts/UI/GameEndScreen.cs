@@ -23,7 +23,7 @@ public class GameEndScreen : MonoBehaviour
     public void DisplayStats(List<WeaponStats> stats)
     {
         StringBuilder sb = new();
-        sb.AppendLine($"Total Kills: {GameManager.Instance.player.TotalKills}");
+        sb.AppendLine($"Total Kills: {GameManager.Instance.GetPlayer().TotalKills}");
         sb.AppendLine();
         foreach (var ws in stats)
         {

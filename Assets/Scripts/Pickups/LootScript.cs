@@ -21,7 +21,7 @@ public class LootScript : PickupBase
 
     public override void OnPlayerPickup()
     {
-        GameManager.Instance.player.PickupScrap(Mathf.Max(Value, 1));
+        GameManager.Instance.GetPlayer().PickupScrap(Mathf.Max(Value, 1));
         base.OnPlayerPickup();
     }
 }

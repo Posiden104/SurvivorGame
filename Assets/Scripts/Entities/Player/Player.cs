@@ -20,6 +20,8 @@ public class Player : Entity
     private int scrapToNextLevel = 10;
     private float hpScale = 1.2f;
     private float xpScale = 1.2f;
+    [SerializeField]
+    private Transform projectileSpawn;
 
     // Start is called before the first frame update
     void Start()
@@ -27,17 +29,8 @@ public class Player : Entity
         dirOrth = Vector3.right;
         dirTrue = Vector3.right;
 
-        StartCoroutine(LoadWeaponManager());
-    }
-
-    IEnumerator LoadWeaponManager()
-    {
-        while (weaponManager == null)
-        {
-            weaponManager = WeaponManager.Instance;
-            yield return new WaitForSeconds(0.1f);
-        }
-        weaponManager.WeaponUpgrade((int)StartingWeapon);
+        weaponManager = WeaponManager.Instance;
+        weaponManager.Setup((int)StartingWeapon, projectileSpawn);
     }
 
     // Update is called once per frame

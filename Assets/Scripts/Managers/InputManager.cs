@@ -20,7 +20,7 @@ public class InputManager : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.L))
         {
-            GameManager.Instance.player.LevelUp();
+            GameManager.Instance.GetPlayer().LevelUp();
         }
     }
 }

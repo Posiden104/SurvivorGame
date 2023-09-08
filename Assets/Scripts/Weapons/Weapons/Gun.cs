@@ -5,7 +5,7 @@ namespace Assets.Scripts.Weapons
     public class Gun : Weapon
     {
 
-        public Gun(Player p, Transform projSpawn) : base(p, projSpawn)
+        public Gun(Transform projSpawn) : base(projSpawn)
         {
             weaponName = "Gun";
         }
@@ -16,7 +16,7 @@ namespace Assets.Scripts.Weapons
 
             var b = Object.Instantiate(GameManager.Instance.BulletPrefab, projectileSpawn);
             var bm = b.GetComponent<BulletMovement>();
-            bm.normalizedDir = player.dirOrth;
+            bm.normalizedDir = GameManager.Instance.GetPlayer().dirOrth;
             var dobj = b.GetComponent<DamageObject>();
             dobj.baseWeapon = this;
             dobj.RegisterOnHit(DidDamage);

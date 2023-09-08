@@ -12,7 +12,7 @@ public class HealthBar : MonoBehaviour
 
     void Start()
     {
-        player = GameManager.Instance.player;
+        player = GameManager.Instance.GetPlayer();
     }
 
     // Update is called once per frame

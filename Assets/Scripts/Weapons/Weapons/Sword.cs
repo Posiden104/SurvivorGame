@@ -12,14 +12,14 @@ namespace Assets.Scripts.Weapons
         private readonly float lifetimeMax = 30f;
         private readonly float lifetimeScale = 1.2f;
 
-        public Sword(Player p) : base(p)
+        public Sword() : base()
         {
             weaponName = "Sword";
             weaponCooldown = 3f;
 
-            sword = Object.Instantiate(GameManager.Instance.SwordPrefab, player.transform);
+            sword = Object.Instantiate(GameManager.Instance.SwordPrefab, GameManager.Instance.GetPlayer().transform);
             rm = sword.GetComponent<RotationalMovement>();
-            rm.SetRotationPoint(player.transform);
+            rm.SetRotationPoint(GameManager.Instance.GetPlayer().transform);
             lifetime = sword.GetComponent<WeaponLifetime>();
             lifetime.SetWeapon(this);
             sword.SetActive(false);
