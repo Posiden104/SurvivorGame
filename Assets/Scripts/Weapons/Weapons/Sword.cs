@@ -16,6 +16,7 @@ namespace Assets.Scripts.Weapons
         {
             weaponName = "Sword";
             weaponCooldown = 3f;
+            onCooldown = true;
 
             sword = Object.Instantiate(GameManager.Instance.SwordPrefab, GameManager.Instance.GetPlayer().transform);
             rm = sword.GetComponent<RotationalMovement>();

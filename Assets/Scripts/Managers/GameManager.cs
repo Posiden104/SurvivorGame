@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject BulletPrefab;
     public GameObject SwordPrefab;
     public GameObject CrosshairPrefab;
+    public GameObject TimeBombPrefab;
 
     // ENEMIES
     public GameObject ZombiePrefab;
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         if (Instance != null)
-            Destroy(this);
+            Destroy(gameObject);
         Instance = this;
         Time.timeScale = 0;
         SetupStartingUI();

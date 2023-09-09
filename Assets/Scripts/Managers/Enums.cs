@@ -30,5 +30,6 @@ public enum WeaponId
 {
     GUN = 0,
     SWORD = 1,
-    OVERWATCH = 2
+    OVERWATCH = 2,
+    TIMEBOMB = 3
 }

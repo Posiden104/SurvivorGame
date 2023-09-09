@@ -17,11 +17,12 @@ public class WeaponManager : MonoBehaviour
     private Gun gun;
     private Sword sword;
     private Overwatch overwatch;
+    private TimeBomb timeBomb;
 
     private void Awake()
     {
         if (Instance != null)
-            Destroy(this);
+            Destroy(gameObject);
         Instance = this;
         weapons = new Weapon[weaponCount];
     }
@@ -30,12 +31,15 @@ public class WeaponManager : MonoBehaviour
         gun = new Gun(projectileSpawn);
         sword = new Sword();
         overwatch = new Overwatch();
+        timeBomb = new TimeBomb(projectileSpawn);
 
         weapons[(int)WeaponId.GUN] = gun;
         weapons[(int)WeaponId.SWORD] = sword;
         weapons[(int)WeaponId.OVERWATCH] = overwatch;
+        weapons[(int)WeaponId.TIMEBOMB] = timeBomb;
 
         WeaponUpgrade(startingWeapon);
+        weapons[startingWeapon].Activate();
     }
 
     // Update is called once per frame

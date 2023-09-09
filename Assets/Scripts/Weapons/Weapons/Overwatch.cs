@@ -25,7 +25,7 @@ namespace Assets.Scripts.Weapons
         public Overwatch() : base()
         {
             damage = 10f;
-            onCooldown = false;
+            onCooldown = true;
             weaponCooldown = 5f;
             weaponName = "Overwatch";
 

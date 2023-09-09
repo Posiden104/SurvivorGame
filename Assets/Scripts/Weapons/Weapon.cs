@@ -41,6 +41,7 @@ public class Weapon : IWeapon
     public virtual void Update()
     {
         if (!onCooldown) return;
+        if (weaponLevel == 0) return;
         weaponCooldownTimer += Time.deltaTime;
         if (weaponCooldownTimer >= weaponCooldown)
         {
