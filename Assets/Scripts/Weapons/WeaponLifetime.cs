@@ -56,6 +56,21 @@ public class WeaponLifetime : MonoBehaviour
         return timeActive;
     }
 
+    public float GetCurrentTimer()
+    {
+        return lifetimeTimer;
+    }
+
+    public float GetLifeLeftPercentage()
+    {
+        return lifetimeTimer / timeActive;
+    }
+
+    public float GetLifeUsedPercentage()
+    {
+        return 1 - GetLifeLeftPercentage();
+    }
+
     public void DeactivateNoEndHook()
     {
         gameObject.SetActive(false);

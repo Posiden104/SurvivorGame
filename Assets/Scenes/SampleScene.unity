@@ -2004,7 +2004,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 927972750}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2215,7 +2215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1112698303}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.619, y: -0.547, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2262,8 +2262,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1060280467
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5727bdf05ddd24c43812614b1ab52c8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2330,10 +2330,11 @@ MonoBehaviour:
   HP: 0
   MaxHP: 10
   ShowDamageLog: 0
-  StartingWeapon: 0
+  StartingWeapon: 3
   magnetRange: 1
   TotalKills: 0
   scrap: 0
+  projectileSpawn: {fileID: 1187222953}
 --- !u!1 &1133440642
 GameObject:
   m_ObjectHideFlags: 0
@@ -2684,9 +2685,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fcd02895b926514ba4ceba779885a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1112698311}
   BulletPrefab: {fileID: 2539490952633512001, guid: 99aed8828d991a545a07889b57c8abb3, type: 3}
   SwordPrefab: {fileID: 698623916622274697, guid: 162d92d50c59e954dac747cfe209ba53, type: 3}
   CrosshairPrefab: {fileID: 1318004067971920886, guid: 285f574dc67f1aa498d470fc97d53604, type: 3}
+  TimeBombPrefab: {fileID: 4251552031389359078, guid: e78de4c525f64f748b04168411d7df03, type: 3}
   ZombiePrefab: {fileID: 1286011374463470835, guid: ff9c8159862bec643a0ad1d32064ab79, type: 3}
   ZombieSlowPrefab: {fileID: 1854158472925468249, guid: 35c450be1bb4ed64b9bed6d0ef2b40c6, type: 3}
   LootContainer: {fileID: 779197888}
@@ -2776,7 +2779,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267961313}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.1, y: -0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5069,11 +5072,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 515931876933598903, guid: 0e8609932cd82a64d8985fadb43a08ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.62
+      value: 4.12
       objectReference: {fileID: 0}
     - target: {fileID: 515931876933598903, guid: 0e8609932cd82a64d8985fadb43a08ee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.23
+      value: -0.53
       objectReference: {fileID: 0}
     - target: {fileID: 515931876933598903, guid: 0e8609932cd82a64d8985fadb43a08ee, type: 3}
       propertyPath: m_LocalPosition.z

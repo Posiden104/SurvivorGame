@@ -2,11 +2,19 @@ using Assets.Scripts.Weapons;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TimeBombScript : MonoBehaviour, IHasLifetime
 {
     private AOEDamage aoeDamage;
     private WeaponLifetime lifetime;
+
+    [SerializeField]
+    private Image bombImage;
+    [SerializeField]
+    private Image rangeImage;
+    [SerializeField]
+    private Image timerImage;
 
     public void OnLifetimeStart()
     {
@@ -15,7 +23,6 @@ public class TimeBombScript : MonoBehaviour, IHasLifetime
     public void OnLifetimeEnd()
     {
         aoeDamage.DoDamage();
-        Debug.Log("now destroy this go");
         Destroy(gameObject);
     }
 
@@ -29,6 +36,8 @@ public class TimeBombScript : MonoBehaviour, IHasLifetime
         lifetime.SetWeapon(this);
         lifetime.Activate();
         lifetime.deactivateOnLifeEnd = false;
+        rangeImage.rectTransform.sizeDelta = new Vector2(radius * 2, radius * 2);
+        timerImage.rectTransform.sizeDelta = new Vector2(radius * 2, radius * 2);
     }
 
     // Start is called before the first frame update
@@ -39,5 +48,6 @@ public class TimeBombScript : MonoBehaviour, IHasLifetime
     // Update is called once per frame
     void Update()
     {
+        timerImage.fillAmount = lifetime.GetLifeUsedPercentage();
     }
 }
