@@ -6,6 +6,7 @@ public class WeaponLifetime : MonoBehaviour
     [SerializeField]
     protected float timeActive;
     protected float lifetimeTimer;
+    public bool deactivateOnLifeEnd = true;
 
     protected IHasLifetime lifetimeManager;
 
@@ -27,7 +28,7 @@ public class WeaponLifetime : MonoBehaviour
 
     public void Deactivate()
     {
-        DeactivateNoEndHook();
+        if(deactivateOnLifeEnd) DeactivateNoEndHook();
         lifetimeManager.OnLifetimeEnd();
     }
 
@@ -53,6 +54,21 @@ public class WeaponLifetime : MonoBehaviour
     public float GetLifetime()
     {
         return timeActive;
+    }
+
+    public float GetCurrentTimer()
+    {
+        return lifetimeTimer;
+    }
+
+    public float GetLifeLeftPercentage()
+    {
+        return lifetimeTimer / timeActive;
+    }
+
+    public float GetLifeUsedPercentage()
+    {
+        return 1 - GetLifeLeftPercentage();
     }
 
     public void DeactivateNoEndHook()

@@ -22,15 +22,15 @@ namespace Assets.Scripts.Weapons
         private readonly float lifetimeScale = 0.9f;
 
 
-        public Overwatch(Player p) : base(p) 
+        public Overwatch() : base()
         {
             damage = 10f;
-            onCooldown = false;
+            onCooldown = true;
             weaponCooldown = 5f;
             weaponName = "Overwatch";
 
             percentageScale = 1f - percentageMin;
-            crosshair = Object.Instantiate(GameManager.Instance.CrosshairPrefab, player.transform);
+            crosshair = Object.Instantiate(GameManager.Instance.CrosshairPrefab, GameManager.Instance.GetPlayer().transform);
 
             lifetime = crosshair.GetComponent<WeaponLifetime>();
             lifetime.SetWeapon(this);

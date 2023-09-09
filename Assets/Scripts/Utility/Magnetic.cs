@@ -12,7 +12,7 @@ public class Magnetic : MonoBehaviour
 
     private void Start()
     {
-        target = GameManager.Instance.player.transform;
+        target = GameManager.Instance.GetPlayer().transform;
     }
 
     public void Magnetize()
@@ -41,7 +41,7 @@ public class Magnetic : MonoBehaviour
             var heading = (target.position - transform.position).normalized;
             transform.position += heading * speed * Time.deltaTime;
 
-        } else if(GetComponent<DistanceToPlayer>().GetDistance() < GameManager.Instance.player.magnetRange)
+        } else if(GetComponent<DistanceToPlayer>().GetDistance() < GameManager.Instance.GetPlayer().magnetRange)
         {
             Magnetize();
         }

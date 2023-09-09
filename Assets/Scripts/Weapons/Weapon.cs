@@ -20,7 +20,6 @@ public class Weapon : IWeapon
     public string weaponName;
 
     protected float weaponCooldownTimer = 0;
-    protected Player player;
     protected bool onCooldown;
     protected float startSeconds;
     protected float lifetimeDamage;
@@ -29,21 +28,20 @@ public class Weapon : IWeapon
     protected float cooldownMin = 0.1f;
     protected float cooldownScale = 0.005f;
 
-    public Weapon(Player p, Transform projSpawn)
+    public Weapon(Transform projSpawn)
     {
-        player = p;
         onCooldown = true;
         projectileSpawn = projSpawn;
     }
-    public Weapon(Player p)
+    public Weapon()
     {
-        player = p;
         onCooldown = true;
     }
 
     public virtual void Update()
     {
         if (!onCooldown) return;
+        if (weaponLevel == 0) return;
         weaponCooldownTimer += Time.deltaTime;
         if (weaponCooldownTimer >= weaponCooldown)
         {

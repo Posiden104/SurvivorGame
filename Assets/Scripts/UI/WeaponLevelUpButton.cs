@@ -20,7 +20,7 @@ public class WeaponLevelUpButton : MonoBehaviour
     public void OptionPicked()
     {
         WeaponManager.Instance.WeaponUpgrade(id);
-        GameManager.Instance.player.LevelUpDone();
+        GameManager.Instance.GetPlayer().LevelUpDone();
     }
 
     public void SetUpgrade(int weaponId)

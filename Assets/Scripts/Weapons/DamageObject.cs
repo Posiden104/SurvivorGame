@@ -10,7 +10,6 @@ public class DamageObject : MonoBehaviour
     public Weapon baseWeapon;
 
     [SerializeField]
-    //[DrawIf("canBreak", true)]
     private int hitsToDie;
 
     private Action<float> onHitActions;
@@ -18,7 +17,7 @@ public class DamageObject : MonoBehaviour
     public void Hit(Enemy enemy)
     {
         enemy.Damage(baseWeapon.damage);
-        onHitActions(baseWeapon.damage);
+        onHitActions?.Invoke(baseWeapon.damage);
         if (!canBreak) return;
         hitsToDie--;
         if (hitsToDie == 0)

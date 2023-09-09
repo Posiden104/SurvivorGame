@@ -79,7 +79,7 @@ public class Enemy : Entity
             var l = Instantiate(GameManager.Instance.ScrapPrefab, transform.position, transform.rotation, GameManager.Instance.LootContainer.transform);
             l.GetComponent<LootScript>().Value = lootValue;
         }
-        GameManager.Instance.player.TotalKills++;
+        GameManager.Instance.GetPlayer().TotalKills++;
         base.Kill();
     }
 }

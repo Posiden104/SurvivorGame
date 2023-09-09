@@ -6,12 +6,14 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public static int fixedUpdatesPerSec = 50;
 
-    public Player player { get; private set; }
+    [SerializeField]
+    private Player player;
 
     // WEAPONS
     public GameObject BulletPrefab;
     public GameObject SwordPrefab;
     public GameObject CrosshairPrefab;
+    public GameObject TimeBombPrefab;
 
     // ENEMIES
     public GameObject ZombiePrefab;
@@ -41,10 +43,9 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         if (Instance != null)
-            Destroy(this);
+            Destroy(gameObject);
         Instance = this;
         Time.timeScale = 0;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         SetupStartingUI();
     }
 
@@ -88,5 +89,10 @@ public class GameManager : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public Player GetPlayer()
+    {
+        return player;
     }
 }

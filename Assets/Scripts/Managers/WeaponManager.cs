@@ -17,27 +17,29 @@ public class WeaponManager : MonoBehaviour
     private Gun gun;
     private Sword sword;
     private Overwatch overwatch;
+    private TimeBomb timeBomb;
 
     private void Awake()
     {
         if (Instance != null)
-            Destroy(this);
+            Destroy(gameObject);
         Instance = this;
-    }
-
-    void Start()
-    {
         weapons = new Weapon[weaponCount];
-        var p = GameManager.Instance.player;
-        projectileSpawn = p.GetComponentsInChildren<Transform>().First(c => c.name == "ProjectileSpawn");
+    }
+    public void Setup(int startingWeapon, Transform projectileSpawn)
+    {
+        gun = new Gun(projectileSpawn);
+        sword = new Sword();
+        overwatch = new Overwatch();
+        timeBomb = new TimeBomb(projectileSpawn);
 
-        gun = new Gun(p, projectileSpawn);
-        sword = new Sword(p);
-        overwatch = new Overwatch(p);
+        weapons[(int)WeaponId.GUN] = gun;
+        weapons[(int)WeaponId.SWORD] = sword;
+        weapons[(int)WeaponId.OVERWATCH] = overwatch;
+        weapons[(int)WeaponId.TIMEBOMB] = timeBomb;
 
-        weapons[(int) WeaponId.GUN] = gun;
-        weapons[(int) WeaponId.SWORD] = sword;
-        weapons[(int) WeaponId.OVERWATCH] = overwatch;
+        WeaponUpgrade(startingWeapon);
+        weapons[startingWeapon].Activate();
     }
 
     // Update is called once per frame

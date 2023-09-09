@@ -8,7 +8,7 @@ public class DistanceManager : MonoBehaviour
     void Awake()
     {
         if (Instance != null)
-            Destroy(this);
+            Destroy(gameObject);
         Instance = this;
     }
 
