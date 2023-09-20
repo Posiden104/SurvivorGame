@@ -6,8 +6,6 @@ namespace Assets.Scripts.Weapons
     public class TimeBomb : Weapon
     {
 
-        private Transform spawnLoc;
-
         // Level Up Items
         private float radius = 1f;
         private float delay = 5f;
@@ -20,7 +18,7 @@ namespace Assets.Scripts.Weapons
         public TimeBomb(Transform projSpawn) : base(projSpawn)
         {
             damage = 5;
-            spawnLoc = projSpawn;
+            projectileSpawn = projSpawn;
             weaponName = "Time Bomb";
             onCooldown = true;
             weaponCooldown = 5f;
@@ -28,9 +26,10 @@ namespace Assets.Scripts.Weapons
 
         public override void Activate()
         {
-            var bomb = Object.Instantiate(GameManager.Instance.TimeBombPrefab, spawnLoc.position, new Quaternion());
+            var bomb = Object.Instantiate(GameManager.Instance.TimeBombPrefab, projectileSpawn.position, new Quaternion(), GameManager.Instance.ProjectileContainer.transform);
             var bombScript = bomb.GetComponent<TimeBombScript>();
             bombScript.Setup(delay, radius, damage);
+            bombScript.aoeDamage.RegisterOnHitAction(DidDamage);
 
             onCooldown = true;
         }

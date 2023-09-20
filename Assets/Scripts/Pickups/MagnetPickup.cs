@@ -21,7 +21,6 @@ namespace Assets.Scripts.Pickups
 
         public override void OnPlayerPickup()
         {
-            Debug.Log("magnet pickup");
             FindObjectsOfType<Magnetic>().ToList().ForEach(o => o.SuperMagnetize());
             base.OnPlayerPickup();
         }

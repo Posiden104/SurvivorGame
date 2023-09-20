@@ -28,7 +28,7 @@ public class ZombieSpawner : MonoBehaviour
                 enemy = GameManager.Instance.ZombiePrefab;
             else
                 enemy = GameManager.Instance.ZombieSlowPrefab;
-            Instantiate(enemy, transform.position, transform.rotation);
+            Instantiate(enemy, transform.position, transform.rotation, GameManager.Instance.EnemyContainer.transform);
             timer = 0;
         }
     }

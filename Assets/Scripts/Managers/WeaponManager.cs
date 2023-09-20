@@ -18,6 +18,7 @@ public class WeaponManager : MonoBehaviour
     private Sword sword;
     private Overwatch overwatch;
     private TimeBomb timeBomb;
+    private Grenade grenade;
 
     private void Awake()
     {
@@ -32,11 +33,13 @@ public class WeaponManager : MonoBehaviour
         sword = new Sword();
         overwatch = new Overwatch();
         timeBomb = new TimeBomb(projectileSpawn);
+        grenade = new Grenade(projectileSpawn);
 
         weapons[(int)WeaponId.GUN] = gun;
         weapons[(int)WeaponId.SWORD] = sword;
         weapons[(int)WeaponId.OVERWATCH] = overwatch;
         weapons[(int)WeaponId.TIMEBOMB] = timeBomb;
+        weapons[(int)WeaponId.GRENADE] = grenade;
 
         WeaponUpgrade(startingWeapon);
         weapons[startingWeapon].Activate();

@@ -8,7 +8,7 @@ using UnityEngine;
 public class Player : Entity
 {
     public Vector3 dirOrth { get; private set; }
-    public Vector3 dirTrue { get; private set; }
+    public Vector3 dirTrueNormalized { get; private set; }
     public WeaponId StartingWeapon;
     public float magnetRange;
     public int TotalKills;
@@ -27,7 +27,7 @@ public class Player : Entity
     void Start()
     {
         dirOrth = Vector3.right;
-        dirTrue = Vector3.right;
+        dirTrueNormalized = Vector3.right;
 
         weaponManager = WeaponManager.Instance;
         weaponManager.Setup((int)StartingWeapon, projectileSpawn);
@@ -48,9 +48,9 @@ public class Player : Entity
     }
 
 
-    public void SetDir(Vector3 dir)
+    public void SetNormalizedDir(Vector3 dir)
     {
-        if (dir != Vector3.zero) dirTrue = dir;
+        if (dir != Vector3.zero) dirTrueNormalized = dir;
 
         if (dir.y > 0)
         {

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class TimeBombScript : MonoBehaviour, IHasLifetime
 {
-    private AOEDamage aoeDamage;
+    public AOEDamage aoeDamage;
     private WeaponLifetime lifetime;
 
     [SerializeField]
