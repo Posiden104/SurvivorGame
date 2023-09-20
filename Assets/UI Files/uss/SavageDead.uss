@@ -1,0 +1,63 @@
+.bloodyTitle {
+    -unity-font: url('project://database/Assets/DamageNumbersPro/Fonts/DNPBloody.ttf?fileID=12800000&guid=74d8a71eb219a13469eac2c2e0801ffc&type=3#DNPBloody');
+    -unity-font-definition: url('project://database/Assets/DamageNumbersPro/Fonts/DNPBloody.ttf?fileID=12800000&guid=74d8a71eb219a13469eac2c2e0801ffc&type=3#DNPBloody');
+    color: rgb(188, 29, 29);
+    -unity-text-align: upper-center;
+    -unity-font-style: normal;
+    font-size: 73px;
+}
+
+.panelBase {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.background {
+    height: 75%;
+    background-color: rgba(0, 0, 0, 0.59);
+    background-image: none;
+    width: 75%;
+    align-items: center;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.whiteText {
+    height: 25%;
+    white-space: normal;
+    font-size: 40px;
+    width: 75%;
+    -unity-text-align: upper-left;
+    color: rgb(255, 255, 255);
+}
+
+.button {
+    height: 43px;
+    width: 187px;
+    font-size: 20px;
+    -unity-text-align: middle-center;
+    white-space: nowrap;
+    right: auto;
+    left: auto;
+    position: relative;
+    top: auto;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: rgb(84, 84, 84);
+}
+
+.triColumn {
+    width: 33%;
+    -unity-text-align: upper-center;
+    align-items: center;
+}
+
+blackText {
+}

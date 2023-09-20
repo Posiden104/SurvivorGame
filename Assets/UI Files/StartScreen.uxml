@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/uss/InfoCard.uss?fileID=7433441132597879392&amp;guid=edef669748637c942a9d5ec790148bef&amp;type=3#InfoCard" />
+    <ui:VisualElement class="panelBase">
+        <ui:GroupBox name="background" class="background">
+            <ui:VisualElement style="height: 20%; width: 100%;" />
+            <ui:Label text="W,A,S,D to move. ESC to end the game manually. Weapons activate automatically. Last as long as you can against the endless hoardes, of the  " display-tooltip-when-elided="true" name="instructions" class="whiteText" />
+            <ui:Label text="Savage Dead" display-tooltip-when-elided="true" name="title" class="bloodyTitle" style="height: 25%; -unity-text-align: middle-center; font-size: 179px;" />
+            <ui:VisualElement style="height: 124px; align-items: center; justify-content: center;">
+                <ui:Button text="Start" display-tooltip-when-elided="true" name="startButton" class="button" />
+            </ui:VisualElement>
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>

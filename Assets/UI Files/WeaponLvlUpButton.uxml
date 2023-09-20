@@ -1,0 +1,21 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Files/uss/SavageDead.uss?fileID=7433441132597879392&amp;guid=edef669748637c942a9d5ec790148bef&amp;type=3#SavageDead" />
+    <ui:VisualElement name="background" style="width: 150px; height: 170px; background-image: none; background-color: rgb(255, 255, 255); border-top-left-radius: 20px; border-bottom-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; align-items: center;">
+        <ui:VisualElement name="spacer" style="width: 150px; height: 9px;" />
+        <ui:Label text="Overwatch" display-tooltip-when-elided="true" class="bloodyTitle" style="font-size: 20px;" />
+        <ui:VisualElement name="infoHolder" style="width: 95%; height: 75%; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+            <ui:VisualElement name="labelCol" class="triColumn" style="align-items: flex-start; width: 25%;">
+                <ui:Label display-tooltip-when-elided="true" name="leftspacer" />
+                <ui:Label text="Level" display-tooltip-when-elided="true" name="levelLbl" />
+            </ui:VisualElement>
+            <ui:VisualElement name="currentCol" class="triColumn">
+                <ui:Label text="Current" display-tooltip-when-elided="true" name="currentLabel" style="color: rgba(0, 0, 0, 255);" />
+                <ui:Label text="1" display-tooltip-when-elided="true" name="lvlCur" />
+            </ui:VisualElement>
+            <ui:VisualElement name="nextCol" class="triColumn">
+                <ui:Label text="Next" display-tooltip-when-elided="true" name="nextLabel" />
+                <ui:Label text="2" display-tooltip-when-elided="true" name="lvlNxt" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
