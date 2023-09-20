@@ -2690,6 +2690,7 @@ MonoBehaviour:
   SwordPrefab: {fileID: 698623916622274697, guid: 162d92d50c59e954dac747cfe209ba53, type: 3}
   CrosshairPrefab: {fileID: 1318004067971920886, guid: 285f574dc67f1aa498d470fc97d53604, type: 3}
   TimeBombPrefab: {fileID: 4251552031389359078, guid: e78de4c525f64f748b04168411d7df03, type: 3}
+  GrenadePrefab: {fileID: 0}
   ZombiePrefab: {fileID: 1286011374463470835, guid: ff9c8159862bec643a0ad1d32064ab79, type: 3}
   ZombieSlowPrefab: {fileID: 1854158472925468249, guid: 35c450be1bb4ed64b9bed6d0ef2b40c6, type: 3}
   LootContainer: {fileID: 779197888}

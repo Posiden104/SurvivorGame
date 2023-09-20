@@ -14,7 +14,7 @@ namespace Assets.Scripts.Weapons
         {
             if (weaponLevel == 0) return;
 
-            var b = Object.Instantiate(GameManager.Instance.BulletPrefab, projectileSpawn);
+            var b = Object.Instantiate(GameManager.Instance.BulletPrefab, projectileSpawn.position, new Quaternion(), GameManager.Instance.ProjectileContainer.transform);
             var bm = b.GetComponent<BulletMovement>();
             bm.normalizedDir = GameManager.Instance.GetPlayer().dirOrth;
             var dobj = b.GetComponent<DamageObject>();

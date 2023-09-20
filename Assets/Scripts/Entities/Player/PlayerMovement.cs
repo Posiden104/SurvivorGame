@@ -27,8 +27,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 dir = new(moveH, moveV, 0);
+        player.SetNormalizedDir(dir.normalized);
         dir = speed * dir.normalized;
-        player.SetDir(dir);
         rigidBody.MovePosition(rigidBody.transform.position + dir);
     }
 

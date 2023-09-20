@@ -14,14 +14,19 @@ public class GameManager : MonoBehaviour
     public GameObject SwordPrefab;
     public GameObject CrosshairPrefab;
     public GameObject TimeBombPrefab;
+    public GameObject GrenadePrefab;
 
     // ENEMIES
     public GameObject ZombiePrefab;
     public GameObject ZombieSlowPrefab;
 
     // LOOT
-    public GameObject LootContainer;
     public GameObject ScrapPrefab;
+
+    // CONTAINERS
+    public GameObject LootContainer;
+    public GameObject EnemyContainer;
+    public GameObject ProjectileContainer;
 
     // SPAWNERS
     public GameObject ZombieSpawner;
